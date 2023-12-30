@@ -26,6 +26,10 @@ namespace defense_mission {
 			//TODO:  在此加入建構函式程式碼
 			//
 		}
+        // some variable
+        int coin = 50;
+        int system_counter = 0;
+        laser_gun* laser;
 
 	protected:
 		/// <summary>
@@ -44,10 +48,7 @@ namespace defense_mission {
     protected:
 
 	private:
-        // some variable
-        int coin = 50;
-        int system_counter = 0;
-        laser_gun* laser;
+        
     private: System::Windows::Forms::Button^ button2;
     private: System::Windows::Forms::Button^ button3;
     private: System::Windows::Forms::Button^ button4;
@@ -206,7 +207,7 @@ namespace defense_mission {
             Pen^ pen_p = gcnew Pen(Color::Purple, 2);
 
             // plot laser
-            e1->DrawEllipse(pen_b, 174.0, 77.0, 20, 20);
+            e1->DrawEllipse(pen_b, 174.0, 77.0, laser->radius, laser->radius);
             e1->DrawLine(pen_b, 174, 77, 214, 77);
         }
 
