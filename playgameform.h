@@ -29,15 +29,15 @@ namespace defense_mission {
             this->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &playgameform::playgameform_MouseClick);
         }
         // some variable
-        int coin = 50;
+        int coin = 1000;
         int system_counter = 0;
         laser_gun* laser = new laser_gun();
-        bool button_click_laser = false;
-        bool button_click_machine = false;
-        bool button_click_cannon = false;
-        bool button_click_landmine = false;
-        bool button_click_bomb = false;
-        bool map[25];
+        machine_gun* machine = new machine_gun();
+        cannon* Cannon = new cannon();
+        landmine* Landmine = new landmine();
+        bomb* Bomb = new bomb();
+        bool* map = new bool[25]();
+        bool* map_click_status = new bool[25]();
         float mouseX;
         float mouseY;
     private: System::Windows::Forms::Button^ button7;
@@ -95,11 +95,149 @@ namespace defense_mission {
     private: System::ComponentModel::IContainer^ components;
     private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
         // 在 pictureBox1 上方繪製 laser gun
-        if (button_click_laser == true) {
+        if (map[0] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b, 174.0, 57.0, laser->radius, laser->radius);
-            g->DrawLine(pen_b, 184, 67, 204, 67);
+            g->DrawEllipse(pen_b, 174.0, 34.0, laser->radius, laser->radius);
+            g->DrawLine(pen_b, 184, 44, 204, 44);
+        }
+        if (map[1] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b, 174.0, 115.0, laser->radius, laser->radius);
+            g->DrawLine(pen_b, 184, 125, 204, 125);
+        }
+        if (map[2] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b, 174.0, 190.0, laser->radius, laser->radius);
+            g->DrawLine(pen_b, 184, 200, 204, 200);
+        }
+        if (map[3] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b, 174.0, 260.0, laser->radius, laser->radius);
+            g->DrawLine(pen_b, 184, 270, 204, 270);
+        }
+        if (map[4] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b, 174.0, 333.0, laser->radius, laser->radius);
+            g->DrawLine(pen_b, 184, 343, 204, 343);
+        }
+        // 在 pictureBox1 上方繪製 machine gun
+        if (map[5] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_r = gcnew Pen(Color::Red, 2);
+            g->DrawEllipse(pen_r, 270.0, 34.0, machine->radius, machine->radius);
+            g->DrawLine(pen_r, 280, 44, 300, 44);
+        }
+        if (map[6] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_r = gcnew Pen(Color::Red, 2);
+            g->DrawEllipse(pen_r, 270.0, 115.0, machine->radius, machine->radius);
+            g->DrawLine(pen_r, 280, 125, 300, 125);
+        }
+        if (map[7] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_r = gcnew Pen(Color::Red, 2);
+            g->DrawEllipse(pen_r, 270.0, 190.0, machine->radius, machine->radius);
+            g->DrawLine(pen_r, 280, 200, 300, 200);
+        }
+        if (map[8] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_r = gcnew Pen(Color::Red, 2);
+            g->DrawEllipse(pen_r, 270.0, 260.0, machine->radius, machine->radius);
+            g->DrawLine(pen_r, 280, 270, 300, 270);
+        }
+        if (map[9] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_r = gcnew Pen(Color::Red, 2);
+            g->DrawEllipse(pen_r, 270.0, 333.0, machine->radius, machine->radius);
+            g->DrawLine(pen_r, 280, 343, 300, 343);
+        }
+        // 在 pictureBox1 上方繪製 cannon
+        if (map[10] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_p = gcnew Pen(Color::Purple, 2);
+            g->DrawEllipse(pen_p, 350.0, 34.0, Cannon->radius, Cannon->radius);
+            g->DrawLine(pen_p, 360, 44, 380, 44);
+        }
+        if (map[11] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_p = gcnew Pen(Color::Purple, 2);
+            g->DrawEllipse(pen_p, 350.0, 115.0, Cannon->radius, Cannon->radius);
+            g->DrawLine(pen_p, 360, 125, 380, 125);
+        }
+        if (map[12] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_p = gcnew Pen(Color::Purple, 2);
+            g->DrawEllipse(pen_p, 350.0, 190.0, Cannon->radius, Cannon->radius);
+            g->DrawLine(pen_p, 360, 200, 380, 200);
+        }
+        if (map[13] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_p = gcnew Pen(Color::Purple, 2);
+            g->DrawEllipse(pen_p, 350.0, 260.0, Cannon->radius, Cannon->radius);
+            g->DrawLine(pen_p, 360, 270, 380, 270);
+        }
+        if (map[14] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_p = gcnew Pen(Color::Purple, 2);
+            g->DrawEllipse(pen_p, 350.0, 333.0, Cannon->radius, Cannon->radius);
+            g->DrawLine(pen_p, 360, 343, 380, 343);
+        }
+        // 在 pictureBox1 上方繪製 landmine
+        if (map[15] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, 15);
+            g->DrawEllipse(pen_k, 448.0, 34.0, Landmine->radius, Landmine->radius);
+        }
+        if (map[16] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, 15);
+            g->DrawEllipse(pen_k, 448.0, 115.0, Landmine->radius, Landmine->radius);
+        }
+        if (map[17] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, 15);
+            g->DrawEllipse(pen_k, 448.0, 190.0, Landmine->radius, Landmine->radius);
+        }
+        if (map[18] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, 15);
+            g->DrawEllipse(pen_k, 448.0, 260.0, Landmine->radius, Landmine->radius);
+        }
+        if (map[19] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, 15);
+            g->DrawEllipse(pen_k, 448.0, 333.0, Landmine->radius, Landmine->radius);
+        }
+        // 在 pictureBox1 上方繪製 bomb
+        if (map[20] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
+            g->DrawEllipse(pen_y, 532.0, 34.0, Bomb->radius, Bomb->radius);
+        }
+        if (map[21] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
+            g->DrawEllipse(pen_y, 532.0, 115.0, Bomb->radius, Bomb->radius);
+        }
+        if (map[22] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
+            g->DrawEllipse(pen_y, 532.0, 190.0, Bomb->radius, Bomb->radius);
+        }
+        if (map[23] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
+            g->DrawEllipse(pen_y, 532.0, 260.0, Bomb->radius, Bomb->radius);
+        }
+        if (map[24] == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
+            g->DrawEllipse(pen_y, 532.0, 333.0, Bomb->radius, Bomb->radius);
         }
     }
     private: System::Void playgameform_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -596,11 +734,180 @@ namespace defense_mission {
 
            void initialize() {
                laser->radius = 20;
+               machine->radius = 20;
+               Cannon->radius = 20;
+               Landmine->radius = 15;
+               Bomb->radius = 20;
            }
 
-           void button_ctrl() {
-
+           void button_hidden() {
+               if (this->button7->Visible == true) {
+                   this->button7->Visible = false;
+               }
+               if (this->button8->Visible == true) {
+                   this->button8->Visible = false;
+               }
+               if (this->button9->Visible == true) {
+                   this->button9->Visible = false;
+               }
+               if (this->button10->Visible == true) {
+                   this->button10->Visible = false;
+               }
+               if (this->button11->Visible == true) {
+                   this->button11->Visible = false;
+               }
+               if (this->button12->Visible == true) {
+                   this->button12->Visible = false;
+               }
+               if (this->button13->Visible == true) {
+                   this->button13->Visible = false;
+               }
+               if (this->button14->Visible == true) {
+                   this->button14->Visible = false;
+               }
+               if (this->button15->Visible == true) {
+                   this->button15->Visible = false;
+               }
+               if (this->button16->Visible == true) {
+                   this->button16->Visible = false;
+               }
+               if (this->button17->Visible == true) {
+                   this->button17->Visible = false;
+               }
+               if (this->button18->Visible == true) {
+                   this->button18->Visible = false;
+               }
+               if (this->button19->Visible == true) {
+                   this->button19->Visible = false;
+               }
+               if (this->button20->Visible == true) {
+                   this->button20->Visible = false;
+               }
+               if (this->button21->Visible == true) {
+                   this->button21->Visible = false;
+               }
+               if (this->button22->Visible == true) {
+                   this->button22->Visible = false;
+               }
+               if (this->button23->Visible == true) {
+                   this->button23->Visible = false;
+               }
+               if (this->button24->Visible == true) {
+                   this->button24->Visible = false;
+               }
+               if (this->button25->Visible == true) {
+                   this->button25->Visible = false;
+               }
+               if (this->button26->Visible == true) {
+                   this->button26->Visible = false;
+               }
+               if (this->button27->Visible == true) {
+                   this->button27->Visible = false;
+               }
+               if (this->button28->Visible == true) {
+                   this->button28->Visible = false;
+               }
+               if (this->button29->Visible == true) {
+                   this->button29->Visible = false;
+               }
+               if (this->button30->Visible == true) {
+                   this->button30->Visible = false;
+               }
+               if (this->button31->Visible == true) {
+                   this->button31->Visible = false;
+               }
            }
+
+           void button_display_laser() {
+               if (map[0] == false) {
+                   this->button7->Visible = true;
+               }
+               if (map[1] == false) {
+                   this->button8->Visible = true;
+               }
+               if (map[2] == false) {
+                   this->button9->Visible = true;
+               }
+               if (map[3] == false) {
+                   this->button10->Visible = true;
+               }
+               if (map[4] == false) {
+                   this->button11->Visible = true;
+               }
+           }
+
+           void button_display_machine() {
+               if (map[5] == false) {
+                   this->button12->Visible = true;
+               }
+               if (map[6] == false) {
+                   this->button13->Visible = true;
+               }
+               if (map[7] == false) {
+                   this->button14->Visible = true;
+               }
+               if (map[8] == false) {
+                   this->button15->Visible = true;
+               }
+               if (map[9] == false) {
+                   this->button16->Visible = true;
+               }
+           }
+
+           void button_display_cannon() {
+               if (map[10] == false) {
+                   this->button17->Visible = true;
+               }
+               if (map[11] == false) {
+                   this->button18->Visible = true;
+               }
+               if (map[12] == false) {
+                   this->button19->Visible = true;
+               }
+               if (map[13] == false) {
+                   this->button20->Visible = true;
+               }
+               if (map[14] == false) {
+                   this->button21->Visible = true;
+               }
+           }
+
+           void button_display_landmine() {
+               if (map[15] == false) {
+                   this->button22->Visible = true;
+               }
+               if (map[16] == false) {
+                   this->button23->Visible = true;
+               }
+               if (map[17] == false) {
+                   this->button24->Visible = true;
+               }
+               if (map[18] == false) {
+                   this->button25->Visible = true;
+               }
+               if (map[19] == false) {
+                   this->button26->Visible = true;
+               }
+           }
+
+           void button_display_bomb() {
+               if (map[20] == false) {
+                   this->button27->Visible = true;
+               }
+               if (map[21] == false) {
+                   this->button28->Visible = true;
+               }
+               if (map[22] == false) {
+                   this->button29->Visible = true;
+               }
+               if (map[23] == false) {
+                   this->button30->Visible = true;
+               }
+               if (map[24] == false) {
+                   this->button31->Visible = true;
+               }
+           }
+
 
 #pragma endregion
     private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
@@ -619,83 +926,133 @@ namespace defense_mission {
     }
     private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) { // laser gun
         if (coin >= 20) {
-            button_click_laser = true;
             coin -= 20;
+            button_display_laser();
         }
     }
     private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) { // machine gun
         if (coin >= 40) {
-            button_click_machine = true;
             coin -= 40;
+            button_display_machine();
         }
     }
     private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) { // cannon
         if (coin >= 50) {
-            button_click_cannon = true;
             coin -= 50;
+            button_display_cannon();
         }
     }
     private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) { // landmine
         if (coin >= 15) {
-            button_click_landmine = true;
             coin -= 15;
+            button_display_landmine();
         }
     }
     private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) { // bomb
         if (coin >= 35) {
-            button_click_bomb = true;
             coin -= 35;
+            button_display_bomb();
         }
     }
-    private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) { // map[0]
+        map[0] = true;
+        button_hidden();
     }
-    private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) { // map[1]
+        map[1] = true;
+        button_hidden();
     }
-    private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) { // map[2]
+        map[2] = true;
+        button_hidden();
     }
-    private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) { // map[3]
+        map[3] = true;
+        button_hidden();
     }
-    private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) { // map[4]
+        map[4] = true;
+        button_hidden();
     }
-    private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) { // map[5]
+        map[5] = true;
+        button_hidden();
     }
-    private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) { // map[6]
+        map[6] = true;
+        button_hidden();
     }
-    private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) { // map[7]
+        map[7] = true;
+        button_hidden();
     }
-    private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) { // map[8]
+        map[8] = true;
+        button_hidden();
     }
-    private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) { // map[9]
+        map[9] = true;
+        button_hidden();
     }
-    private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) { // map[10]
+        map[10] = true;
+        button_hidden();
     }
-    private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) { // map[11]
+        map[11] = true;
+        button_hidden();
     }
-    private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) { // map[12]
+        map[12] = true;
+        button_hidden();
     }
-    private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) { // map[13]
+        map[13] = true;
+        button_hidden();
     }
-    private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) { // map[14]
+        map[14] = true;
+        button_hidden();
     }
-    private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) { // map[15]
+        map[15] = true;
+        button_hidden();
     }
-    private: System::Void button23_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button23_Click(System::Object^ sender, System::EventArgs^ e) { // map[16]
+        map[16] = true;
+        button_hidden();
     }
-    private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) { // map[17]
+        map[17] = true;
+        button_hidden();
     }
-    private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ e) { // map[18]
+        map[18] = true;
+        button_hidden();
     }
-    private: System::Void button26_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button26_Click(System::Object^ sender, System::EventArgs^ e) { // map[19]
+        map[19] = true;
+        button_hidden();
     }
-    private: System::Void button27_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button27_Click(System::Object^ sender, System::EventArgs^ e) { // map[20]
+        map[20] = true;
+        button_hidden();
     }
-    private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button28_Click(System::Object^ sender, System::EventArgs^ e) { // map[21]
+        map[21] = true;
+        button_hidden();
     }
-    private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button29_Click(System::Object^ sender, System::EventArgs^ e) { // map[22]
+        map[22] = true;
+        button_hidden();
     }
-    private: System::Void button30_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button30_Click(System::Object^ sender, System::EventArgs^ e) { // map[23]
+        map[23] = true;
+        button_hidden();
     }
-    private: System::Void button31_Click(System::Object^ sender, System::EventArgs^ e) {
+    private: System::Void button31_Click(System::Object^ sender, System::EventArgs^ e) { // map[24]
+        map[24] = true;
+        button_hidden();
     }
     };
 }
