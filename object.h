@@ -27,13 +27,13 @@ public:
     bool enable = false;
 };
 
-class gun :public weapon{
+class gun :public weapon {
 public:
     float range;
     int life;
 };
 
-class laser_gun : public gun{
+class laser_gun : public gun {
 public:
     float line_range;
 };

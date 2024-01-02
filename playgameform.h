@@ -768,7 +768,7 @@ namespace defense_mission {
            }
 
            void initialize() {
-               
+
            }
 
            void button_hidden() {
