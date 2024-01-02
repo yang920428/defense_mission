@@ -74,7 +74,9 @@ namespace defense_mission {
             // 
             // pictureBox1
             // 
-            this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
+            System::Drawing::Image^ img = System::Drawing::Image::FromFile("game.png");
+            this->pictureBox1->Image = img;
+            //this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
             this->pictureBox1->Location = System::Drawing::Point(55, 81);
             this->pictureBox1->Name = L"pictureBox1";
             this->pictureBox1->Size = System::Drawing::Size(566, 397);
