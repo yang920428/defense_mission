@@ -25,6 +25,7 @@ public:
     position pos;
     velocity V;
     bool enable = false;
+    int now_time;
 };
 
 class gun :public weapon {

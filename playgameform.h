@@ -31,7 +31,7 @@ namespace defense_mission {
         // some variable
         int coin = 1000;
         int system_counter = 0;
-        weapon* wea = new weapon[25]();
+        weapon* wea = new weapon[10]();
         laser_gun* laser = new laser_gun[5]();
         machine_gun* machine = new machine_gun[5]();
         cannon* Cannon = new cannon[5]();
@@ -103,33 +103,53 @@ namespace defense_mission {
         // 在 pictureBox1 上方繪製 laser gun
         if (map[0] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b, 174.0, 34.0, 20, 20);
-            g->DrawLine(pen_b, 184, 44, 204, 44);
+            Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b2, 174.0, 34.0, 20, 20);
+            g->DrawLine(pen_b2, 184, 44, 204, 44);
+            if ((system_counter - this->wea->now_time) % 10 == 0) {
+                Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
+                g->DrawLine(pen_y4, 194, 44, 694, 44);
+            }
         }
         if (map[1] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b, 174.0, 115.0, 20, 20);
-            g->DrawLine(pen_b, 184, 125, 204, 125);
+            Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b2, 174.0, 115.0, 20, 20);
+            g->DrawLine(pen_b2, 184, 125, 204, 125);
+            if ((system_counter - this->wea->now_time) % 10 == 0) {
+                Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
+                g->DrawLine(pen_y4, 194, 125, 694, 125);
+            }
         }
         if (map[2] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b, 174.0, 190.0, 20, 20);
-            g->DrawLine(pen_b, 184, 200, 204, 200);
+            Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b2, 174.0, 190.0, 20, 20);
+            g->DrawLine(pen_b2, 184, 200, 204, 200);
+            if ((system_counter - this->wea->now_time) % 10 == 0) {
+                Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
+                g->DrawLine(pen_y4, 194, 200, 694, 200);
+            }
         }
         if (map[3] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b, 174.0, 260.0, 20, 20);
-            g->DrawLine(pen_b, 184, 270, 204, 270);
+            Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b2, 174.0, 260.0, 20, 20);
+            g->DrawLine(pen_b2, 184, 270, 204, 270);
+            if ((system_counter - this->wea->now_time) % 10 == 0) {
+                Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
+                g->DrawLine(pen_y4, 194, 270, 694, 270);
+            }
         }
         if (map[4] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b, 174.0, 333.0, 20, 20);
-            g->DrawLine(pen_b, 184, 343, 204, 343);
+            Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
+            g->DrawEllipse(pen_b2, 174.0, 333.0, 20, 20);
+            g->DrawLine(pen_b2, 184, 343, 204, 343);
+            if ((system_counter - this->wea->now_time) % 10 == 0) {
+                Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
+                g->DrawLine(pen_y4, 194, 343, 694, 343);
+            }
         }
         // 在 pictureBox1 上方繪製 machine gun
         if (map[5] == true) {
@@ -222,28 +242,28 @@ namespace defense_mission {
         // 在 pictureBox1 上方繪製 bomb
         if (map[20] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
-            g->DrawEllipse(pen_y, 532.0, 34.0, 20, 20);
+            Pen^ pen_br = gcnew Pen(Color::Brown, 20);
+            g->DrawEllipse(pen_br, 532.0, 34.0, 20, 20);
         }
         if (map[21] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
-            g->DrawEllipse(pen_y, 532.0, 115.0, 20, 20);
+            Pen^ pen_br = gcnew Pen(Color::Brown, 20);
+            g->DrawEllipse(pen_br, 532.0, 115.0, 20, 20);
         }
         if (map[22] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
-            g->DrawEllipse(pen_y, 532.0, 190.0, 20, 20);
+            Pen^ pen_br = gcnew Pen(Color::Brown, 20);
+            g->DrawEllipse(pen_br, 532.0, 190.0, 20, 20);
         }
         if (map[23] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
-            g->DrawEllipse(pen_y, 532.0, 260.0, 20, 20);
+            Pen^ pen_br = gcnew Pen(Color::Brown, 20);
+            g->DrawEllipse(pen_br, 532.0, 260.0, 20, 20);
         }
         if (map[24] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_y = gcnew Pen(Color::Yellow, 20);
-            g->DrawEllipse(pen_y, 532.0, 333.0, 20, 20);
+            Pen^ pen_br = gcnew Pen(Color::Brown, 20);
+            g->DrawEllipse(pen_br, 532.0, 333.0, 20, 20);
         }
     }
     private: System::Void playgameform_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -988,6 +1008,7 @@ namespace defense_mission {
     private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) { // map[0]
         map[0] = true;
         button_hidden();
+        this->wea->now_time = system_counter;
     }
     private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) { // map[1]
         map[1] = true;
