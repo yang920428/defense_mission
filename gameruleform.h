@@ -10,7 +10,7 @@ namespace defense_mission {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// gameruleform ªººK­n
+	/// gameruleform çš„æ‘˜è¦
 	/// </summary>
 	public ref class gameruleform : public System::Windows::Forms::Form
 	{
@@ -19,13 +19,13 @@ namespace defense_mission {
 		{
 			InitializeComponent();
 			//
-			//TODO:  ¦b¦¹¥[¤J«Øºc¨ç¦¡µ{¦¡½X
+			//TODO:  åœ¨æ­¤åŠ å…¥å»ºæ§‹å‡½å¼ç¨‹å¼ç¢¼
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// ²M°£¥ô¦ó¨Ï¥Î¤¤ªº¸ê·½¡C
+		/// æ¸…é™¤ä»»ä½•ä½¿ç”¨ä¸­çš„è³‡æºã€‚
 		/// </summary>
 		~gameruleform()
 		{
@@ -41,14 +41,14 @@ namespace defense_mission {
 
 	private:
 		/// <summary>
-		/// ³]­p¤u¨ã©Ò»İªºÅÜ¼Æ¡C
+		/// è¨­è¨ˆå·¥å…·æ‰€éœ€çš„è®Šæ•¸ã€‚
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// ¦¹¬°³]­p¤u¨ã¤ä´©©Ò»İªº¤èªk - ½Ğ¤Å¨Ï¥Îµ{¦¡½X½s¿è¾¹­×§ï
-		/// ³o­Ó¤èªkªº¤º®e¡C
+		/// æ­¤ç‚ºè¨­è¨ˆå·¥å…·æ”¯æ´æ‰€éœ€çš„æ–¹æ³• - è«‹å‹¿ä½¿ç”¨ç¨‹å¼ç¢¼ç·¨è¼¯å™¨ä¿®æ”¹
+		/// é€™å€‹æ–¹æ³•çš„å…§å®¹ã€‚
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -62,7 +62,7 @@ namespace defense_mission {
             // button1
             // 
             this->button1->BackColor = System::Drawing::Color::Gold;
-            this->button1->Font = (gcnew System::Drawing::Font(L"·s²Ó©úÅé", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->button1->Font = (gcnew System::Drawing::Font(L"æ–°ç´°æ˜é«”", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(136)));
             this->button1->Location = System::Drawing::Point(453, 538);
             this->button1->Name = L"button1";
@@ -83,7 +83,7 @@ namespace defense_mission {
             // 
             // textBox1
             // 
-            this->textBox1->Font = (gcnew System::Drawing::Font(L"·s²Ó©úÅé", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->textBox1->Font = (gcnew System::Drawing::Font(L"æ–°ç´°æ˜é«”", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(136)));
             this->textBox1->Location = System::Drawing::Point(701, 103);
             this->textBox1->Multiline = true;
