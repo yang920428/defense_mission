@@ -99,79 +99,79 @@ namespace defense_mission {
     private: System::Windows::Forms::Timer^ timer1;
     private: System::ComponentModel::IContainer^ components;
     private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-        // ��l�a�ϼнu
+        // ploting on pictureBox1
         Graphics^ g = e->Graphics;
         Pen^ pen_yg = gcnew Pen(Color::YellowGreen, 5);
         g->DrawLine(pen_yg, 160, 0, 160, 394);
         g->DrawLine(pen_yg, 800, 0, 800, 394);
-        // �b pictureBox1 �W��ø�s laser gun
+        // laser gun
         if (map[0] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b2, 174.0, 34.0, 20, 20);
-            g->DrawLine(pen_b2, 184, 44, 204, 44);
+            g->DrawEllipse(pen_b2, laser[0].pos.x-10, laser[0].pos.y-10, laser[0].radius, laser[0].radius);
+            g->DrawLine(pen_b2, laser[0].pos.x, laser[0].pos.y, laser[0].pos.x+20, laser[0].pos.y);
             if ((system_counter - this->lasergun_wea[0].now_time) % 10 == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
-                g->DrawLine(pen_y4, 194, 44, 694, 44);
+                g->DrawLine(pen_y4, laser[0].pos.x+10, laser[0].pos.y, laser[0].pos.x+510, laser[0].pos.y);
             }
         }
         if (map[1] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b2, 174.0, 115.0, 20, 20);
-            g->DrawLine(pen_b2, 184, 125, 204, 125);
+            g->DrawEllipse(pen_b2, laser[1].pos.x-10, laser[1].pos.y-10, laser[1].radius, laser[1].radius);
+            g->DrawLine(pen_b2, laser[1].pos.x, laser[1].pos.y, laser[1].pos.x+20, laser[1].pos.y);
             if ((system_counter - this->lasergun_wea[1].now_time) % 10 == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
-                g->DrawLine(pen_y4, 194, 125, 694, 125);
+                g->DrawLine(pen_y4, laser[1].pos.x+10, laser[1].pos.y, laser[1].pos.x+510, laser[1].pos.y);
             }
         }
         if (map[2] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b2, 174.0, 190.0, 20, 20);
-            g->DrawLine(pen_b2, 184, 200, 204, 200);
+            g->DrawEllipse(pen_b2, laser[2].pos.x-10, laser[2].pos.y-10, laser[2].radius, laser[2].radius);
+            g->DrawLine(pen_b2, laser[2].pos.x, laser[2].pos.y, laser[2].pos.x+20, laser[2].pos.y);
             if ((system_counter - this->lasergun_wea[2].now_time) % 10 == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
-                g->DrawLine(pen_y4, 194, 200, 694, 200);
+                g->DrawLine(pen_y4, laser[2].pos.x+10, laser[2].pos.y, laser[2].pos.x+510, laser[2].pos.y);
             }
         }
         if (map[3] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b2, 174.0, 260.0, 20, 20);
-            g->DrawLine(pen_b2, 184, 270, 204, 270);
+            g->DrawEllipse(pen_b2, laser[3].pos.x-10, laser[3].pos.y-10, laser[3].radius, laser[3].radius);
+            g->DrawLine(pen_b2, laser[3].pos.x, laser[3].pos.y, laser[3].pos.x+20, laser[3].pos.y);
             if ((system_counter - this->lasergun_wea[3].now_time) % 10 == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
-                g->DrawLine(pen_y4, 194, 270, 694, 270);
+                g->DrawLine(pen_y4, laser[3].pos.x+10, laser[3].pos.y, laser[3].pos.x+510, laser[3].pos.y);
             }
         }
         if (map[4] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
-            g->DrawEllipse(pen_b2, 174.0, 333.0, 20, 20);
-            g->DrawLine(pen_b2, 184, 343, 204, 343);
+            g->DrawEllipse(pen_b2, laser[4].pos.x-10, laser[4].pos.y-10, laser[4].radius, laser[4].radius);
+            g->DrawLine(pen_b2, laser[4].pos.x, laser[4].pos.y, laser[4].pos.x+20, laser[4].pos.y);
             if ((system_counter - this->lasergun_wea[4].now_time) % 10 == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
-                g->DrawLine(pen_y4, 194, 343, 694, 343);
+                g->DrawLine(pen_y4, laser[4].pos.x+10, laser[4].pos.y, laser[4].pos.x+510, laser[4].pos.y);
             }
         }
-        // �b pictureBox1 �W��ø�s machine gun
+        // machine gun
         if (map[5] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_r = gcnew Pen(Color::Red, 2);
-            g->DrawEllipse(pen_r, 270.0, 34.0, 20, 20);
-            g->DrawLine(pen_r, 280, 44, 300, 44);
+            g->DrawEllipse(pen_r, machine[0].pos.x-10, machine[0].pos.y-10, machine[0].radius, machine[0].radius);
+            g->DrawLine(pen_r, machine[0].pos.x, machine[0].pos.y, machine[0].pos.x+20, machine[0].pos.y);
             int notation = 0;
             int interval = 10;
             for (int i = 0; i < 5; i++) {
                 if ((system_counter - this->machinegun_wea[notation * 5+i].now_time) >= 0) {
                     machinegun_wea[notation * 5 + i].V.vx = 20;
                     machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = 34;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, 5);
-                    g->DrawEllipse(pen_machinebullet, (int)machinegun_wea[notation * 5 + i].pos.x, (int)machinegun_wea[notation * 5 + i].pos.y, 5, 5);
+                    machinegun_wea[notation * 5 + i].pos.y = machine[0].pos.y-10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, machinegun_wea[notation * 5 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
                     if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = 280;
+                        machinegun_wea[notation * 5 + i].pos.x = machine[0].pos.x;
                     }
                 }
             }
@@ -179,19 +179,19 @@ namespace defense_mission {
         if (map[6] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_r = gcnew Pen(Color::Red, 2);
-            g->DrawEllipse(pen_r, 270.0, 115.0, 20, 20);
-            g->DrawLine(pen_r, 280, 125, 300, 125);
+            g->DrawEllipse(pen_r, machine[1].pos.x-10, machine[1].pos.y-10, machine[1].radius, machine[1].radius);
+            g->DrawLine(pen_r, machine[1].pos.x, machine[1].pos.y, machine[1].pos.x+20, machine[1].pos.y);
             int notation = 1;
             int interval = 10;
             for (int i = 0; i < 5; i++) {
                 if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
                     machinegun_wea[notation * 5 + i].V.vx = 20;
                     machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = 115;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, 5);
-                    g->DrawEllipse(pen_machinebullet, (int)machinegun_wea[notation * 5 + i].pos.x, (int)machinegun_wea[notation * 5 + i].pos.y, 5, 5);
+                    machinegun_wea[notation * 5 + i].pos.y = machine[1].pos.y-10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, machinegun_wea[notation * 5 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
                     if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = 280;
+                        machinegun_wea[notation * 5 + i].pos.x = machine[1].pos.x;
                     }
                 }
             }
@@ -199,19 +199,19 @@ namespace defense_mission {
         if (map[7] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_r = gcnew Pen(Color::Red, 2);
-            g->DrawEllipse(pen_r, 270.0, 190.0, 20, 20);
-            g->DrawLine(pen_r, 280, 200, 300, 200);
+            g->DrawEllipse(pen_r, machine[2].pos.x-10, machine[2].pos.y-10, machine[2].radius, machine[2].radius);
+            g->DrawLine(pen_r, machine[2].pos.x, machine[2].pos.y, machine[2].pos.x+20, machine[2].pos.y);
             int notation = 2;
             int interval = 10;
             for (int i = 0; i < 5; i++) {
                 if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
                     machinegun_wea[notation * 5 + i].V.vx = 20;
                     machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = 190;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, 5);
-                    g->DrawEllipse(pen_machinebullet, (int)machinegun_wea[notation * 5 + i].pos.x, (int)machinegun_wea[notation * 5 + i].pos.y, 5, 5);
+                    machinegun_wea[notation * 5 + i].pos.y = machine[2].pos.y-10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, machinegun_wea[notation * 5 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
                     if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = 280;
+                        machinegun_wea[notation * 5 + i].pos.x = machine[2].pos.x;
                     }
                 }
             }
@@ -219,19 +219,19 @@ namespace defense_mission {
         if (map[8] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_r = gcnew Pen(Color::Red, 2);
-            g->DrawEllipse(pen_r, 270.0, 260.0, 20, 20);
-            g->DrawLine(pen_r, 280, 270, 300, 270);
+            g->DrawEllipse(pen_r, machine[3].pos.x-10, machine[3].pos.y-10, machine[3].radius, machine[3].radius);
+            g->DrawLine(pen_r, machine[3].pos.x, machine[3].pos.y, machine[3].pos.x+20, machine[3].pos.y);
             int notation = 3;
             int interval = 10;
             for (int i = 0; i < 5; i++) {
                 if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
                     machinegun_wea[notation * 5 + i].V.vx = 20;
                     machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = 260;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, 5);
-                    g->DrawEllipse(pen_machinebullet, (int)machinegun_wea[notation * 5 + i].pos.x, (int)machinegun_wea[notation * 5 + i].pos.y, 5, 5);
+                    machinegun_wea[notation * 5 + i].pos.y = machine[3].pos.y-10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Yellow, machinegun_wea[notation * 5 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
                     if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = 280;
+                        machinegun_wea[notation * 5 + i].pos.x = machine[3].pos.x;
                     }
                 }
             }
@@ -907,11 +907,63 @@ namespace defense_mission {
            }
 
            void initialize() {
+               // gun
                for (int i = 0; i < 5; i++) {
+                   laser[i].radius = 20;
+                   machine[i].radius = 20;
+                   Cannon[i].radius = 20;
+                   Landmine[i].radius = 15;
+                   Bomb[i].radius = 20;
+                   laser[i].pos.x = 184;
+                   machine[i].pos.x = 280;
+                   Cannon[i].pos.x = 360;
+                   Landmine[i].pos.x = 458;
+                   Bomb[i].pos.x = 522;
+                   if (i == 0) {
+                       laser[i].pos.y = 44;
+                       machine[i].pos.y = 44;
+                       Cannon[i].pos.y = 44;
+                       Landmine[i].pos.y = 44;
+                       Bomb[i].pos.y = 44;
+                   }
+                   else if (i == 1) {
+                       laser[i].pos.y = 125;
+                       machine[i].pos.y = 125;
+                       Cannon[i].pos.y = 125;
+                       Landmine[i].pos.y = 125;
+                       Bomb[i].pos.y = 125;
+                   }
+                   else if (i == 2) {
+                       laser[i].pos.y = 200;
+                       machine[i].pos.y = 200;
+                       Cannon[i].pos.y = 200;
+                       Landmine[i].pos.y = 200;
+                       Bomb[i].pos.y = 200;
+                   }
+                   else if (i == 3) {
+                       laser[i].pos.y = 270;
+                       machine[i].pos.y = 270;
+                       Cannon[i].pos.y = 270;
+                       Landmine[i].pos.y = 270;
+                       Bomb[i].pos.y = 270;
+                   }
+                   else {
+                       laser[i].pos.y = 343;
+                       machine[i].pos.y = 343;
+                       Cannon[i].pos.y = 343;
+                       Landmine[i].pos.y = 343;
+                       Bomb[i].pos.y = 343;
+                   }
+               }
+               
+               // weapon
+               for (int i = 0; i < 5; i++) {
+                   cannon_wea[i].radius = 20;
+                   lasergun_wea[i].pos.x = 184;
                    cannon_wea[i].pos.x = 350;
                }
-
                for (int i = 0; i < 5*5; i++) {
+                   machinegun_wea[i].radius = 5;
                    machinegun_wea[i].pos.x = 280;
                }
            }

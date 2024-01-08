@@ -2,12 +2,12 @@
 
 class position {
 public:
-    float x, y, theta;
+    int x, y, theta;
 };
 
 class velocity {
 public:
-    float vx, vy, w;
+    int vx, vy, w;
 };
 
 class enemy {
@@ -20,8 +20,8 @@ public:
 
 class weapon {
 public:
-    float demage;
-    float radius;
+    int demage;
+    int radius;
     position pos;
     velocity V;
     bool enable = false;
@@ -30,18 +30,18 @@ public:
 
 class gun :public weapon {
 public:
-    float range;
+    int range;
     int life;
 };
 
 class laser_gun : public gun {
 public:
-    float line_range;
+    int line_range;
 };
 
 class machine_gun : public gun {
 public:
-    float fire_speed;
+    int fire_speed;
 };
 
 class cannon : public gun {
