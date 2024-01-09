@@ -394,7 +394,7 @@ namespace defense_mission {
             Graphics^ g = e->Graphics;
             Pen^ pen_br = gcnew Pen(Color::Brown, 20);
             int notation = 3;
-            g->DrawEllipse(pen_br, Bomb[notation].pos.x +10, Bomb[notation].pos.y - 10, Bomb[notation].radius, Bomb[notation].radius);
+            g->DrawEllipse(pen_br, Bomb[notation].pos.x + 10, Bomb[notation].pos.y - 10, Bomb[notation].radius, Bomb[notation].radius);
         }
         if (map[24] == true) {
             Graphics^ g = e->Graphics;
@@ -499,10 +499,10 @@ namespace defense_mission {
                this->button1->BackColor = System::Drawing::Color::Gold;
                this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(136)));
-               this->button1->Location = System::Drawing::Point(782, 0);
-               this->button1->Margin = System::Windows::Forms::Padding(2);
+               this->button1->Location = System::Drawing::Point(1043, 0);
+               this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
                this->button1->Name = L"button1";
-               this->button1->Size = System::Drawing::Size(103, 34);
+               this->button1->Size = System::Drawing::Size(137, 42);
                this->button1->TabIndex = 0;
                this->button1->Text = L"back";
                this->button1->UseVisualStyleBackColor = false;
@@ -511,19 +511,20 @@ namespace defense_mission {
                // pictureBox1
                // 
                this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-               this->pictureBox1->Location = System::Drawing::Point(1, 77);
-               this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
+               this->pictureBox1->Location = System::Drawing::Point(1, 96);
+               this->pictureBox1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
                this->pictureBox1->Name = L"pictureBox1";
-               this->pictureBox1->Size = System::Drawing::Size(884, 394);
+               this->pictureBox1->Size = System::Drawing::Size(1179, 492);
                this->pictureBox1->TabIndex = 1;
                this->pictureBox1->TabStop = false;
                this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &playgameform::pictureBox1_Paint);
                // 
                // button2
                // 
-               this->button2->Location = System::Drawing::Point(174, 12);
+               this->button2->Location = System::Drawing::Point(232, 15);
+               this->button2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button2->Name = L"button2";
-               this->button2->Size = System::Drawing::Size(62, 49);
+               this->button2->Size = System::Drawing::Size(83, 61);
                this->button2->TabIndex = 2;
                this->button2->Text = L"laser";
                this->button2->UseVisualStyleBackColor = true;
@@ -531,9 +532,10 @@ namespace defense_mission {
                // 
                // button3
                // 
-               this->button3->Location = System::Drawing::Point(270, 12);
+               this->button3->Location = System::Drawing::Point(360, 15);
+               this->button3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button3->Name = L"button3";
-               this->button3->Size = System::Drawing::Size(62, 49);
+               this->button3->Size = System::Drawing::Size(83, 61);
                this->button3->TabIndex = 3;
                this->button3->Text = L"machine";
                this->button3->UseVisualStyleBackColor = true;
@@ -541,9 +543,10 @@ namespace defense_mission {
                // 
                // button4
                // 
-               this->button4->Location = System::Drawing::Point(360, 12);
+               this->button4->Location = System::Drawing::Point(480, 15);
+               this->button4->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button4->Name = L"button4";
-               this->button4->Size = System::Drawing::Size(62, 49);
+               this->button4->Size = System::Drawing::Size(83, 61);
                this->button4->TabIndex = 4;
                this->button4->Text = L"cannon";
                this->button4->UseVisualStyleBackColor = true;
@@ -551,9 +554,10 @@ namespace defense_mission {
                // 
                // button5
                // 
-               this->button5->Location = System::Drawing::Point(448, 12);
+               this->button5->Location = System::Drawing::Point(597, 15);
+               this->button5->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button5->Name = L"button5";
-               this->button5->Size = System::Drawing::Size(62, 49);
+               this->button5->Size = System::Drawing::Size(83, 61);
                this->button5->TabIndex = 5;
                this->button5->Text = L"landmine";
                this->button5->UseVisualStyleBackColor = true;
@@ -561,9 +565,10 @@ namespace defense_mission {
                // 
                // button6
                // 
-               this->button6->Location = System::Drawing::Point(532, 12);
+               this->button6->Location = System::Drawing::Point(709, 15);
+               this->button6->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button6->Name = L"button6";
-               this->button6->Size = System::Drawing::Size(62, 49);
+               this->button6->Size = System::Drawing::Size(83, 61);
                this->button6->TabIndex = 6;
                this->button6->Text = L"bomb";
                this->button6->UseVisualStyleBackColor = true;
@@ -574,9 +579,10 @@ namespace defense_mission {
                this->label1->AutoSize = true;
                this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(136)));
-               this->label1->Location = System::Drawing::Point(36, 20);
+               this->label1->Location = System::Drawing::Point(48, 25);
+               this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
                this->label1->Name = L"label1";
-               this->label1->Size = System::Drawing::Size(64, 25);
+               this->label1->Size = System::Drawing::Size(53, 20);
                this->label1->TabIndex = 7;
                this->label1->Text = L"label1";
                // 
@@ -588,9 +594,10 @@ namespace defense_mission {
                // button7
                // 
                this->button7->BackColor = System::Drawing::Color::YellowGreen;
-               this->button7->Location = System::Drawing::Point(174, 94);
+               this->button7->Location = System::Drawing::Point(232, 118);
+               this->button7->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button7->Name = L"button7";
-               this->button7->Size = System::Drawing::Size(62, 53);
+               this->button7->Size = System::Drawing::Size(83, 66);
                this->button7->TabIndex = 8;
                this->button7->Text = L"button7";
                this->button7->UseVisualStyleBackColor = false;
@@ -600,9 +607,10 @@ namespace defense_mission {
                // button8
                // 
                this->button8->BackColor = System::Drawing::Color::YellowGreen;
-               this->button8->Location = System::Drawing::Point(174, 173);
+               this->button8->Location = System::Drawing::Point(232, 216);
+               this->button8->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button8->Name = L"button8";
-               this->button8->Size = System::Drawing::Size(62, 53);
+               this->button8->Size = System::Drawing::Size(83, 66);
                this->button8->TabIndex = 9;
                this->button8->Text = L"button8";
                this->button8->UseVisualStyleBackColor = false;
@@ -612,9 +620,10 @@ namespace defense_mission {
                // button9
                // 
                this->button9->BackColor = System::Drawing::Color::YellowGreen;
-               this->button9->Location = System::Drawing::Point(174, 248);
+               this->button9->Location = System::Drawing::Point(232, 310);
+               this->button9->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button9->Name = L"button9";
-               this->button9->Size = System::Drawing::Size(62, 53);
+               this->button9->Size = System::Drawing::Size(83, 66);
                this->button9->TabIndex = 10;
                this->button9->Text = L"button9";
                this->button9->UseVisualStyleBackColor = false;
@@ -624,9 +633,10 @@ namespace defense_mission {
                // button10
                // 
                this->button10->BackColor = System::Drawing::Color::YellowGreen;
-               this->button10->Location = System::Drawing::Point(174, 319);
+               this->button10->Location = System::Drawing::Point(232, 399);
+               this->button10->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button10->Name = L"button10";
-               this->button10->Size = System::Drawing::Size(62, 53);
+               this->button10->Size = System::Drawing::Size(83, 66);
                this->button10->TabIndex = 11;
                this->button10->Text = L"button10";
                this->button10->UseVisualStyleBackColor = false;
@@ -636,9 +646,10 @@ namespace defense_mission {
                // button11
                // 
                this->button11->BackColor = System::Drawing::Color::YellowGreen;
-               this->button11->Location = System::Drawing::Point(174, 392);
+               this->button11->Location = System::Drawing::Point(232, 490);
+               this->button11->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button11->Name = L"button11";
-               this->button11->Size = System::Drawing::Size(62, 53);
+               this->button11->Size = System::Drawing::Size(83, 66);
                this->button11->TabIndex = 12;
                this->button11->Text = L"button11";
                this->button11->UseVisualStyleBackColor = false;
@@ -648,9 +659,10 @@ namespace defense_mission {
                // button12
                // 
                this->button12->BackColor = System::Drawing::Color::YellowGreen;
-               this->button12->Location = System::Drawing::Point(270, 94);
+               this->button12->Location = System::Drawing::Point(360, 118);
+               this->button12->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button12->Name = L"button12";
-               this->button12->Size = System::Drawing::Size(62, 53);
+               this->button12->Size = System::Drawing::Size(83, 66);
                this->button12->TabIndex = 13;
                this->button12->Text = L"button12";
                this->button12->UseVisualStyleBackColor = false;
@@ -660,9 +672,10 @@ namespace defense_mission {
                // button13
                // 
                this->button13->BackColor = System::Drawing::Color::YellowGreen;
-               this->button13->Location = System::Drawing::Point(270, 173);
+               this->button13->Location = System::Drawing::Point(360, 216);
+               this->button13->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button13->Name = L"button13";
-               this->button13->Size = System::Drawing::Size(62, 53);
+               this->button13->Size = System::Drawing::Size(83, 66);
                this->button13->TabIndex = 14;
                this->button13->Text = L"button13";
                this->button13->UseVisualStyleBackColor = false;
@@ -672,9 +685,10 @@ namespace defense_mission {
                // button14
                // 
                this->button14->BackColor = System::Drawing::Color::YellowGreen;
-               this->button14->Location = System::Drawing::Point(270, 248);
+               this->button14->Location = System::Drawing::Point(360, 310);
+               this->button14->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button14->Name = L"button14";
-               this->button14->Size = System::Drawing::Size(62, 53);
+               this->button14->Size = System::Drawing::Size(83, 66);
                this->button14->TabIndex = 15;
                this->button14->Text = L"button14";
                this->button14->UseVisualStyleBackColor = false;
@@ -684,9 +698,10 @@ namespace defense_mission {
                // button15
                // 
                this->button15->BackColor = System::Drawing::Color::YellowGreen;
-               this->button15->Location = System::Drawing::Point(270, 319);
+               this->button15->Location = System::Drawing::Point(360, 399);
+               this->button15->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button15->Name = L"button15";
-               this->button15->Size = System::Drawing::Size(62, 53);
+               this->button15->Size = System::Drawing::Size(83, 66);
                this->button15->TabIndex = 16;
                this->button15->Text = L"button15";
                this->button15->UseVisualStyleBackColor = false;
@@ -696,9 +711,10 @@ namespace defense_mission {
                // button16
                // 
                this->button16->BackColor = System::Drawing::Color::YellowGreen;
-               this->button16->Location = System::Drawing::Point(270, 392);
+               this->button16->Location = System::Drawing::Point(360, 490);
+               this->button16->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button16->Name = L"button16";
-               this->button16->Size = System::Drawing::Size(62, 53);
+               this->button16->Size = System::Drawing::Size(83, 66);
                this->button16->TabIndex = 17;
                this->button16->Text = L"button16";
                this->button16->UseVisualStyleBackColor = false;
@@ -708,9 +724,10 @@ namespace defense_mission {
                // button17
                // 
                this->button17->BackColor = System::Drawing::Color::YellowGreen;
-               this->button17->Location = System::Drawing::Point(360, 94);
+               this->button17->Location = System::Drawing::Point(480, 118);
+               this->button17->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button17->Name = L"button17";
-               this->button17->Size = System::Drawing::Size(62, 53);
+               this->button17->Size = System::Drawing::Size(83, 66);
                this->button17->TabIndex = 18;
                this->button17->Text = L"button17";
                this->button17->UseVisualStyleBackColor = false;
@@ -720,9 +737,10 @@ namespace defense_mission {
                // button18
                // 
                this->button18->BackColor = System::Drawing::Color::YellowGreen;
-               this->button18->Location = System::Drawing::Point(360, 173);
+               this->button18->Location = System::Drawing::Point(480, 216);
+               this->button18->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button18->Name = L"button18";
-               this->button18->Size = System::Drawing::Size(62, 53);
+               this->button18->Size = System::Drawing::Size(83, 66);
                this->button18->TabIndex = 19;
                this->button18->Text = L"button18";
                this->button18->UseVisualStyleBackColor = false;
@@ -732,9 +750,10 @@ namespace defense_mission {
                // button19
                // 
                this->button19->BackColor = System::Drawing::Color::YellowGreen;
-               this->button19->Location = System::Drawing::Point(360, 248);
+               this->button19->Location = System::Drawing::Point(480, 310);
+               this->button19->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button19->Name = L"button19";
-               this->button19->Size = System::Drawing::Size(62, 53);
+               this->button19->Size = System::Drawing::Size(83, 66);
                this->button19->TabIndex = 20;
                this->button19->Text = L"button19";
                this->button19->UseVisualStyleBackColor = false;
@@ -744,9 +763,10 @@ namespace defense_mission {
                // button20
                // 
                this->button20->BackColor = System::Drawing::Color::YellowGreen;
-               this->button20->Location = System::Drawing::Point(360, 319);
+               this->button20->Location = System::Drawing::Point(480, 399);
+               this->button20->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button20->Name = L"button20";
-               this->button20->Size = System::Drawing::Size(62, 53);
+               this->button20->Size = System::Drawing::Size(83, 66);
                this->button20->TabIndex = 21;
                this->button20->Text = L"button20";
                this->button20->UseVisualStyleBackColor = false;
@@ -756,9 +776,10 @@ namespace defense_mission {
                // button21
                // 
                this->button21->BackColor = System::Drawing::Color::YellowGreen;
-               this->button21->Location = System::Drawing::Point(360, 392);
+               this->button21->Location = System::Drawing::Point(480, 490);
+               this->button21->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button21->Name = L"button21";
-               this->button21->Size = System::Drawing::Size(62, 53);
+               this->button21->Size = System::Drawing::Size(83, 66);
                this->button21->TabIndex = 22;
                this->button21->Text = L"button21";
                this->button21->UseVisualStyleBackColor = false;
@@ -768,9 +789,10 @@ namespace defense_mission {
                // button22
                // 
                this->button22->BackColor = System::Drawing::Color::YellowGreen;
-               this->button22->Location = System::Drawing::Point(448, 94);
+               this->button22->Location = System::Drawing::Point(597, 118);
+               this->button22->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button22->Name = L"button22";
-               this->button22->Size = System::Drawing::Size(62, 53);
+               this->button22->Size = System::Drawing::Size(83, 66);
                this->button22->TabIndex = 23;
                this->button22->Text = L"button22";
                this->button22->UseVisualStyleBackColor = false;
@@ -780,9 +802,10 @@ namespace defense_mission {
                // button23
                // 
                this->button23->BackColor = System::Drawing::Color::YellowGreen;
-               this->button23->Location = System::Drawing::Point(448, 173);
+               this->button23->Location = System::Drawing::Point(597, 216);
+               this->button23->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button23->Name = L"button23";
-               this->button23->Size = System::Drawing::Size(62, 53);
+               this->button23->Size = System::Drawing::Size(83, 66);
                this->button23->TabIndex = 24;
                this->button23->Text = L"button23";
                this->button23->UseVisualStyleBackColor = false;
@@ -792,9 +815,10 @@ namespace defense_mission {
                // button24
                // 
                this->button24->BackColor = System::Drawing::Color::YellowGreen;
-               this->button24->Location = System::Drawing::Point(448, 248);
+               this->button24->Location = System::Drawing::Point(597, 310);
+               this->button24->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button24->Name = L"button24";
-               this->button24->Size = System::Drawing::Size(62, 53);
+               this->button24->Size = System::Drawing::Size(83, 66);
                this->button24->TabIndex = 25;
                this->button24->Text = L"button24";
                this->button24->UseVisualStyleBackColor = false;
@@ -804,9 +828,10 @@ namespace defense_mission {
                // button25
                // 
                this->button25->BackColor = System::Drawing::Color::YellowGreen;
-               this->button25->Location = System::Drawing::Point(448, 319);
+               this->button25->Location = System::Drawing::Point(597, 399);
+               this->button25->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button25->Name = L"button25";
-               this->button25->Size = System::Drawing::Size(62, 53);
+               this->button25->Size = System::Drawing::Size(83, 66);
                this->button25->TabIndex = 26;
                this->button25->Text = L"button25";
                this->button25->UseVisualStyleBackColor = false;
@@ -816,9 +841,10 @@ namespace defense_mission {
                // button26
                // 
                this->button26->BackColor = System::Drawing::Color::YellowGreen;
-               this->button26->Location = System::Drawing::Point(448, 392);
+               this->button26->Location = System::Drawing::Point(597, 490);
+               this->button26->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button26->Name = L"button26";
-               this->button26->Size = System::Drawing::Size(62, 53);
+               this->button26->Size = System::Drawing::Size(83, 66);
                this->button26->TabIndex = 27;
                this->button26->Text = L"button26";
                this->button26->UseVisualStyleBackColor = false;
@@ -828,9 +854,10 @@ namespace defense_mission {
                // button27
                // 
                this->button27->BackColor = System::Drawing::Color::YellowGreen;
-               this->button27->Location = System::Drawing::Point(532, 94);
+               this->button27->Location = System::Drawing::Point(709, 118);
+               this->button27->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button27->Name = L"button27";
-               this->button27->Size = System::Drawing::Size(62, 53);
+               this->button27->Size = System::Drawing::Size(83, 66);
                this->button27->TabIndex = 28;
                this->button27->Text = L"button27";
                this->button27->UseVisualStyleBackColor = false;
@@ -840,9 +867,10 @@ namespace defense_mission {
                // button28
                // 
                this->button28->BackColor = System::Drawing::Color::YellowGreen;
-               this->button28->Location = System::Drawing::Point(532, 173);
+               this->button28->Location = System::Drawing::Point(709, 216);
+               this->button28->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button28->Name = L"button28";
-               this->button28->Size = System::Drawing::Size(62, 53);
+               this->button28->Size = System::Drawing::Size(83, 66);
                this->button28->TabIndex = 29;
                this->button28->Text = L"button28";
                this->button28->UseVisualStyleBackColor = false;
@@ -852,9 +880,10 @@ namespace defense_mission {
                // button29
                // 
                this->button29->BackColor = System::Drawing::Color::YellowGreen;
-               this->button29->Location = System::Drawing::Point(532, 248);
+               this->button29->Location = System::Drawing::Point(709, 310);
+               this->button29->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button29->Name = L"button29";
-               this->button29->Size = System::Drawing::Size(62, 53);
+               this->button29->Size = System::Drawing::Size(83, 66);
                this->button29->TabIndex = 30;
                this->button29->Text = L"button29";
                this->button29->UseVisualStyleBackColor = false;
@@ -864,9 +893,10 @@ namespace defense_mission {
                // button30
                // 
                this->button30->BackColor = System::Drawing::Color::YellowGreen;
-               this->button30->Location = System::Drawing::Point(532, 319);
+               this->button30->Location = System::Drawing::Point(709, 399);
+               this->button30->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button30->Name = L"button30";
-               this->button30->Size = System::Drawing::Size(62, 53);
+               this->button30->Size = System::Drawing::Size(83, 66);
                this->button30->TabIndex = 31;
                this->button30->Text = L"button30";
                this->button30->UseVisualStyleBackColor = false;
@@ -876,9 +906,10 @@ namespace defense_mission {
                // button31
                // 
                this->button31->BackColor = System::Drawing::Color::YellowGreen;
-               this->button31->Location = System::Drawing::Point(532, 392);
+               this->button31->Location = System::Drawing::Point(709, 490);
+               this->button31->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
                this->button31->Name = L"button31";
-               this->button31->Size = System::Drawing::Size(62, 53);
+               this->button31->Size = System::Drawing::Size(83, 66);
                this->button31->TabIndex = 32;
                this->button31->Text = L"button31";
                this->button31->UseVisualStyleBackColor = false;
@@ -891,9 +922,10 @@ namespace defense_mission {
                this->label2->BackColor = System::Drawing::Color::Black;
                this->label2->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
                this->label2->ForeColor = System::Drawing::Color::White;
-               this->label2->Location = System::Drawing::Point(819, 114);
+               this->label2->Location = System::Drawing::Point(1092, 142);
+               this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
                this->label2->Name = L"label2";
-               this->label2->Size = System::Drawing::Size(93, 20);
+               this->label2->Size = System::Drawing::Size(79, 17);
                this->label2->TabIndex = 33;
                this->label2->Text = L"(´・ω・`)";
                // 
@@ -903,9 +935,10 @@ namespace defense_mission {
                this->label3->BackColor = System::Drawing::Color::Black;
                this->label3->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
                this->label3->ForeColor = System::Drawing::Color::White;
-               this->label3->Location = System::Drawing::Point(819, 195);
+               this->label3->Location = System::Drawing::Point(1092, 244);
+               this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
                this->label3->Name = L"label3";
-               this->label3->Size = System::Drawing::Size(93, 20);
+               this->label3->Size = System::Drawing::Size(79, 17);
                this->label3->TabIndex = 34;
                this->label3->Text = L"(´・ω・`)";
                // 
@@ -915,9 +948,10 @@ namespace defense_mission {
                this->label4->BackColor = System::Drawing::Color::Black;
                this->label4->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
                this->label4->ForeColor = System::Drawing::Color::White;
-               this->label4->Location = System::Drawing::Point(819, 270);
+               this->label4->Location = System::Drawing::Point(1092, 338);
+               this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
                this->label4->Name = L"label4";
-               this->label4->Size = System::Drawing::Size(93, 20);
+               this->label4->Size = System::Drawing::Size(79, 17);
                this->label4->TabIndex = 35;
                this->label4->Text = L"(´・ω・`)";
                // 
@@ -927,9 +961,10 @@ namespace defense_mission {
                this->label5->BackColor = System::Drawing::Color::Black;
                this->label5->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
                this->label5->ForeColor = System::Drawing::Color::White;
-               this->label5->Location = System::Drawing::Point(819, 340);
+               this->label5->Location = System::Drawing::Point(1092, 425);
+               this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
                this->label5->Name = L"label5";
-               this->label5->Size = System::Drawing::Size(93, 20);
+               this->label5->Size = System::Drawing::Size(79, 17);
                this->label5->TabIndex = 36;
                this->label5->Text = L"(´・ω・`)";
                // 
@@ -939,18 +974,19 @@ namespace defense_mission {
                this->label6->BackColor = System::Drawing::Color::Black;
                this->label6->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
                this->label6->ForeColor = System::Drawing::Color::White;
-               this->label6->Location = System::Drawing::Point(819, 413);
+               this->label6->Location = System::Drawing::Point(1092, 516);
+               this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
                this->label6->Name = L"label6";
-               this->label6->Size = System::Drawing::Size(93, 20);
+               this->label6->Size = System::Drawing::Size(79, 17);
                this->label6->TabIndex = 37;
                this->label6->Text = L"(´・ω・`)";
                // 
                // playgameform
                // 
-               this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
+               this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
                this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
                this->BackColor = System::Drawing::Color::LemonChiffon;
-               this->ClientSize = System::Drawing::Size(886, 522);
+               this->ClientSize = System::Drawing::Size(1181, 652);
                this->Controls->Add(this->label6);
                this->Controls->Add(this->label5);
                this->Controls->Add(this->label4);
@@ -989,7 +1025,7 @@ namespace defense_mission {
                this->Controls->Add(this->button2);
                this->Controls->Add(this->pictureBox1);
                this->Controls->Add(this->button1);
-               this->Margin = System::Windows::Forms::Padding(2);
+               this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
                this->Name = L"playgameform";
                this->Text = L"gaming";
                (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -1003,7 +1039,67 @@ namespace defense_mission {
            }
 
            void Motion() {
+               //enemy motion 
+               for (int i = 0; i < 5; i++) {
+                   int layer = -1;
+                   bool isbreak = false;
+                   for (int j = 0; j < 5; j++) {
+                       if (map[5 * j + i]) {
+                           if (j == 0 && enemy_normal[i].pos.x - 50 == laser[i].pos.x) {
+                               enemy_normal[i].pos.x = laser[i].pos.x + 50;
+                               isbreak = true;
+                           }
+                           else if (j == 1 && enemy_normal[i].pos.x - 50 == machine[i].pos.x) {
+                               enemy_normal[i].pos.x = machine[i].pos.x + 50;
+                               isbreak = true;
+                           }
+                           else if (j == 2 && enemy_normal[i].pos.x - 50 == Cannon[i].pos.x) {
+                               enemy_normal[i].pos.x = Cannon[i].pos.x + 50;
+                               isbreak = true;
+                           }
+                           /*else if (layer == 3 &&  enemy_normal[i].pos.x  <= Landmine[i].pos.x) {
+                               enemy_normal[i].pos.x = Landmine[i].pos.x;
+                           }
+                           else if (layer == 4 &&  enemy_normal[i].pos.x  <= Bomb[i].pos.x) {
+                               enemy_normal[i].pos.x = Bomb[i].pos.x;
+                           }*/
+                           
+                       }
+                       
+                    }
+                   if (!isbreak) enemy_normal[i].pos.x -= 2;
 
+                    
+                   
+                   //if (layer != -1) {
+                   //    if (layer == 0  && enemy_normal[i].pos.x - 50 <= laser[i].pos.x) {
+                   //        enemy_normal[i].pos.x = laser[i].pos.x;
+                   //    }    
+                   //    else if (layer == 1 &&  enemy_normal[i].pos.x - 50 <= machine[i].pos.x) {
+                   //        enemy_normal[i].pos.x = machine[i].pos.x +50;
+                   //    }
+                   //    else if (layer == 2 &&  enemy_normal[i].pos.x - 50 <= Cannon[i].pos.x) {
+                   //        enemy_normal[i].pos.x = Cannon[i].pos.x + 50;
+                   //    }
+                   //    /*else if (layer == 3 &&  enemy_normal[i].pos.x  <= Landmine[i].pos.x) {
+                   //        enemy_normal[i].pos.x = Landmine[i].pos.x;
+                   //    }
+                   //    else if (layer == 4 &&  enemy_normal[i].pos.x  <= Bomb[i].pos.x) {
+                   //        enemy_normal[i].pos.x = Bomb[i].pos.x;
+                   //    }*/
+                   //    else {
+                   //        enemy_normal[i].pos.x -= 2;
+                   //        
+                   //    }
+                   //}
+                   //else enemy_normal[i].pos.x -= 2;
+
+               }
+               this->label2->Location = System::Drawing::Point(enemy_normal[0].pos.x-31, 114);
+               this->label3->Location = System::Drawing::Point(enemy_normal[1].pos.x -31, 195);
+               this->label4->Location = System::Drawing::Point(enemy_normal[2].pos.x - 31, 270);
+               this->label5->Location = System::Drawing::Point(enemy_normal[3].pos.x - 31, 340);
+               this->label6->Location = System::Drawing::Point(enemy_normal[4].pos.x - 31, 413);
            }
 
            void initialize() {
@@ -1099,7 +1195,7 @@ namespace defense_mission {
                    else if (i == 3) {
                        enemy_normal[i].pos.y = 270;
                    }
-                   else{
+                   else {
                        enemy_normal[i].pos.y = 343;
                    }
                }
@@ -1282,6 +1378,7 @@ namespace defense_mission {
 
         }
 
+        Motion();
         //plot_HMI();
         text_displayer();
         pictureBox1->Invalidate();
