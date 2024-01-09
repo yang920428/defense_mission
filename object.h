@@ -12,7 +12,9 @@ public:
 
 class enemy {
 public:
+    int radius;
     int life;
+    int damage;
     position pos;
     velocity V;
     bool enable = true;
@@ -20,18 +22,20 @@ public:
 
 class weapon {
 public:
-    int demage;
+    int damage;
     int radius;
     position pos;
     velocity V;
     bool enable = false;
     int now_time;
+    int buff_level;
 };
 
 class gun :public weapon {
 public:
     int range;
     int life;
+    int shoot_v;
 };
 
 class laser_gun : public gun {

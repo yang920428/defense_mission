@@ -31,9 +31,10 @@ namespace defense_mission {
         // some variable
         int coin = 1000;
         int system_counter = 0;
+        enemy* enemy_normal = new enemy[5]();
         weapon* lasergun_wea = new weapon[5]();
         weapon* cannon_wea = new weapon[5]();
-        weapon* machinegun_wea = new weapon[5 * 5]();
+        weapon* machinegun_wea = new weapon[5 * 10]();
         laser_gun* laser = new laser_gun[5]();
         machine_gun* machine = new machine_gun[5]();
         cannon* Cannon = new cannon[5]();
@@ -70,6 +71,13 @@ namespace defense_mission {
     private: System::Windows::Forms::Button^ button28;
     private: System::Windows::Forms::Button^ button29;
     private: System::Windows::Forms::Button^ button30;
+    private: System::Windows::Forms::Label^ label2;
+    private: System::Windows::Forms::Label^ label3;
+    private: System::Windows::Forms::Label^ label4;
+    private: System::Windows::Forms::Label^ label5;
+    private: System::Windows::Forms::Label^ label6;
+
+
     private: System::Windows::Forms::Button^ button31;
 
     protected:
@@ -110,7 +118,7 @@ namespace defense_mission {
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
             g->DrawEllipse(pen_b2, laser[0].pos.x - 10, laser[0].pos.y - 10, laser[0].radius, laser[0].radius);
             g->DrawLine(pen_b2, laser[0].pos.x, laser[0].pos.y, laser[0].pos.x + 20, laser[0].pos.y);
-            if ((system_counter - this->lasergun_wea[0].now_time) % 10 == 0) {
+            if ((system_counter - this->lasergun_wea[0].now_time) % laser[0].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[0].pos.x + 10, laser[0].pos.y, laser[0].pos.x + 510, laser[0].pos.y);
             }
@@ -120,7 +128,7 @@ namespace defense_mission {
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
             g->DrawEllipse(pen_b2, laser[1].pos.x - 10, laser[1].pos.y - 10, laser[1].radius, laser[1].radius);
             g->DrawLine(pen_b2, laser[1].pos.x, laser[1].pos.y, laser[1].pos.x + 20, laser[1].pos.y);
-            if ((system_counter - this->lasergun_wea[1].now_time) % 10 == 0) {
+            if ((system_counter - this->lasergun_wea[1].now_time) % laser[1].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[1].pos.x + 10, laser[1].pos.y, laser[1].pos.x + 510, laser[1].pos.y);
             }
@@ -130,7 +138,7 @@ namespace defense_mission {
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
             g->DrawEllipse(pen_b2, laser[2].pos.x - 10, laser[2].pos.y - 10, laser[2].radius, laser[2].radius);
             g->DrawLine(pen_b2, laser[2].pos.x, laser[2].pos.y, laser[2].pos.x + 20, laser[2].pos.y);
-            if ((system_counter - this->lasergun_wea[2].now_time) % 10 == 0) {
+            if ((system_counter - this->lasergun_wea[2].now_time) % laser[2].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[2].pos.x + 10, laser[2].pos.y, laser[2].pos.x + 510, laser[2].pos.y);
             }
@@ -140,7 +148,7 @@ namespace defense_mission {
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
             g->DrawEllipse(pen_b2, laser[3].pos.x - 10, laser[3].pos.y - 10, laser[3].radius, laser[3].radius);
             g->DrawLine(pen_b2, laser[3].pos.x, laser[3].pos.y, laser[3].pos.x + 20, laser[3].pos.y);
-            if ((system_counter - this->lasergun_wea[3].now_time) % 10 == 0) {
+            if ((system_counter - this->lasergun_wea[3].now_time) % laser[3].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[3].pos.x + 10, laser[3].pos.y, laser[3].pos.x + 510, laser[3].pos.y);
             }
@@ -150,7 +158,7 @@ namespace defense_mission {
             Pen^ pen_b2 = gcnew Pen(Color::Blue, 2);
             g->DrawEllipse(pen_b2, laser[4].pos.x - 10, laser[4].pos.y - 10, laser[4].radius, laser[4].radius);
             g->DrawLine(pen_b2, laser[4].pos.x, laser[4].pos.y, laser[4].pos.x + 20, laser[4].pos.y);
-            if ((system_counter - this->lasergun_wea[4].now_time) % 10 == 0) {
+            if ((system_counter - this->lasergun_wea[4].now_time) % laser[4].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[4].pos.x + 10, laser[4].pos.y, laser[4].pos.x + 510, laser[4].pos.y);
             }
@@ -163,15 +171,15 @@ namespace defense_mission {
             g->DrawLine(pen_r, machine[0].pos.x, machine[0].pos.y, machine[0].pos.x + 20, machine[0].pos.y);
             int notation = 0;
             int interval = 10;
-            for (int i = 0; i < 5; i++) {
-                if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
-                    machinegun_wea[notation * 5 + i].V.vx = 20;
-                    machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = machine[0].pos.y - 10;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 5 + i].radius);
-                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
-                    if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = machine[0].pos.x;
+            for (int i = 0; i < 10; i++) {
+                if ((system_counter - this->machinegun_wea[notation * 10 + i].now_time) >= 0) {
+                    machinegun_wea[notation * 10 + i].V.vx = 26;
+                    machinegun_wea[notation * 10 + i].pos.x += machinegun_wea[notation * 10 + i].V.vx;
+                    machinegun_wea[notation * 10 + i].pos.y = machine[0].pos.y - 10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 10 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 10 + i].pos.x, machinegun_wea[notation * 10 + i].pos.y, machinegun_wea[notation * 10 + i].radius, machinegun_wea[notation * 10 + i].radius);
+                    if (machinegun_wea[notation * 10 + i].pos.x >= 800) {
+                        machinegun_wea[notation * 10 + i].pos.x = machine[0].pos.x;
                     }
                 }
             }
@@ -183,15 +191,15 @@ namespace defense_mission {
             g->DrawLine(pen_r, machine[1].pos.x, machine[1].pos.y, machine[1].pos.x + 20, machine[1].pos.y);
             int notation = 1;
             int interval = 10;
-            for (int i = 0; i < 5; i++) {
-                if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
-                    machinegun_wea[notation * 5 + i].V.vx = 20;
-                    machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = machine[1].pos.y - 10;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 5 + i].radius);
-                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
-                    if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = machine[1].pos.x;
+            for (int i = 0; i < 10; i++) {
+                if ((system_counter - this->machinegun_wea[notation * 10 + i].now_time) >= 0) {
+                    machinegun_wea[notation * 10 + i].V.vx = 26;
+                    machinegun_wea[notation * 10 + i].pos.x += machinegun_wea[notation * 10 + i].V.vx;
+                    machinegun_wea[notation * 10 + i].pos.y = machine[1].pos.y - 10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 10 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 10 + i].pos.x, machinegun_wea[notation * 10 + i].pos.y, machinegun_wea[notation * 10 + i].radius, machinegun_wea[notation * 10 + i].radius);
+                    if (machinegun_wea[notation * 10 + i].pos.x >= 800) {
+                        machinegun_wea[notation * 10 + i].pos.x = machine[1].pos.x;
                     }
                 }
             }
@@ -203,15 +211,15 @@ namespace defense_mission {
             g->DrawLine(pen_r, machine[2].pos.x, machine[2].pos.y, machine[2].pos.x + 20, machine[2].pos.y);
             int notation = 2;
             int interval = 10;
-            for (int i = 0; i < 5; i++) {
-                if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
-                    machinegun_wea[notation * 5 + i].V.vx = 20;
-                    machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = machine[2].pos.y - 10;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 5 + i].radius);
-                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
-                    if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = machine[2].pos.x;
+            for (int i = 0; i < 10; i++) {
+                if ((system_counter - this->machinegun_wea[notation * 10 + i].now_time) >= 0) {
+                    machinegun_wea[notation * 10 + i].V.vx = 26;
+                    machinegun_wea[notation * 10 + i].pos.x += machinegun_wea[notation * 10 + i].V.vx;
+                    machinegun_wea[notation * 10 + i].pos.y = machine[2].pos.y - 10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 10 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 10 + i].pos.x, machinegun_wea[notation * 10 + i].pos.y, machinegun_wea[notation * 10 + i].radius, machinegun_wea[notation * 10 + i].radius);
+                    if (machinegun_wea[notation * 10 + i].pos.x >= 800) {
+                        machinegun_wea[notation * 10 + i].pos.x = machine[2].pos.x;
                     }
                 }
             }
@@ -223,15 +231,15 @@ namespace defense_mission {
             g->DrawLine(pen_r, machine[3].pos.x, machine[3].pos.y, machine[3].pos.x + 20, machine[3].pos.y);
             int notation = 3;
             int interval = 10;
-            for (int i = 0; i < 5; i++) {
-                if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
-                    machinegun_wea[notation * 5 + i].V.vx = 20;
-                    machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = machine[3].pos.y - 10;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 5 + i].radius);
-                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
-                    if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = machine[3].pos.x;
+            for (int i = 0; i < 10; i++) {
+                if ((system_counter - this->machinegun_wea[notation * 10 + i].now_time) >= 0) {
+                    machinegun_wea[notation * 10 + i].V.vx = 26;
+                    machinegun_wea[notation * 10 + i].pos.x += machinegun_wea[notation * 10 + i].V.vx;
+                    machinegun_wea[notation * 10 + i].pos.y = machine[3].pos.y - 10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 10 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 10 + i].pos.x, machinegun_wea[notation * 10 + i].pos.y, machinegun_wea[notation * 10 + i].radius, machinegun_wea[notation * 10 + i].radius);
+                    if (machinegun_wea[notation * 10 + i].pos.x >= 800) {
+                        machinegun_wea[notation * 10 + i].pos.x = machine[3].pos.x;
                     }
                 }
             }
@@ -243,20 +251,20 @@ namespace defense_mission {
             g->DrawLine(pen_r, machine[4].pos.x, machine[4].pos.y, machine[4].pos.x + 20, machine[4].pos.y);
             int notation = 4;
             int interval = 10;
-            for (int i = 0; i < 5; i++) {
-                if ((system_counter - this->machinegun_wea[notation * 5 + i].now_time) >= 0) {
-                    machinegun_wea[notation * 5 + i].V.vx = 20;
-                    machinegun_wea[notation * 5 + i].pos.x += machinegun_wea[notation * 5 + i].V.vx;
-                    machinegun_wea[notation * 5 + i].pos.y = machine[4].pos.y - 10;
-                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 5 + i].radius);
-                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 5 + i].pos.x, machinegun_wea[notation * 5 + i].pos.y, machinegun_wea[notation * 5 + i].radius, machinegun_wea[notation * 5 + i].radius);
-                    if (machinegun_wea[notation * 5 + i].pos.x >= 800) {
-                        machinegun_wea[notation * 5 + i].pos.x = machine[4].pos.x;
+            for (int i = 0; i < 10; i++) {
+                if ((system_counter - this->machinegun_wea[notation * 10 + i].now_time) >= 0) {
+                    machinegun_wea[notation * 10 + i].V.vx = 26;
+                    machinegun_wea[notation * 10 + i].pos.x += machinegun_wea[notation * 10 + i].V.vx;
+                    machinegun_wea[notation * 10 + i].pos.y = machine[4].pos.y - 10;
+                    Pen^ pen_machinebullet = gcnew Pen(Color::Orange, machinegun_wea[notation * 10 + i].radius);
+                    g->DrawEllipse(pen_machinebullet, machinegun_wea[notation * 10 + i].pos.x, machinegun_wea[notation * 10 + i].pos.y, machinegun_wea[notation * 10 + i].radius, machinegun_wea[notation * 10 + i].radius);
+                    if (machinegun_wea[notation * 10 + i].pos.x >= 800) {
+                        machinegun_wea[notation * 10 + i].pos.x = machine[4].pos.x;
                     }
                 }
             }
         }
-        // �b pictureBox1 �W��ø�s cannon
+        // cannon
         if (map[10] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_p = gcnew Pen(Color::Purple, 2);
@@ -332,7 +340,7 @@ namespace defense_mission {
                 cannon_wea[notation].pos.x = Cannon[notation].pos.x;
             }
         }
-        // �b pictureBox1 �W��ø�s landmine
+        // landmine
         if (map[15] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_k = gcnew Pen(Color::Black, 15);
@@ -363,7 +371,7 @@ namespace defense_mission {
             int notation = 4;
             g->DrawEllipse(pen_k, Landmine[notation].pos.x + 10, Landmine[notation].pos.y - 10, Landmine[notation].radius, Landmine[notation].radius);
         }
-        // �b pictureBox1 �W��ø�s bomb
+        // bomb
         if (map[20] == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_br = gcnew Pen(Color::Brown, 20);
@@ -393,6 +401,31 @@ namespace defense_mission {
             Pen^ pen_br = gcnew Pen(Color::Brown, 20);
             int notation = 4;
             g->DrawEllipse(pen_br, Bomb[notation].pos.x + 10, Bomb[notation].pos.y - 10, Bomb[notation].radius, Bomb[notation].radius);
+        }
+        if (enemy_normal[0].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[0].radius);
+            g->DrawEllipse(pen_k, enemy_normal[0].pos.x - 10, enemy_normal[0].pos.y - 10, enemy_normal[0].radius, enemy_normal[0].radius);
+        }
+        if (enemy_normal[1].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[1].radius);
+            g->DrawEllipse(pen_k, enemy_normal[1].pos.x - 10, enemy_normal[1].pos.y - 10, enemy_normal[1].radius, enemy_normal[1].radius);
+        }
+        if (enemy_normal[2].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[2].radius);
+            g->DrawEllipse(pen_k, enemy_normal[2].pos.x - 10, enemy_normal[2].pos.y - 10, enemy_normal[2].radius, enemy_normal[2].radius);
+        }
+        if (enemy_normal[3].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[3].radius);
+            g->DrawEllipse(pen_k, enemy_normal[3].pos.x - 10, enemy_normal[3].pos.y - 10, enemy_normal[3].radius, enemy_normal[3].radius);
+        }
+        if (enemy_normal[4].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[4].radius);
+            g->DrawEllipse(pen_k, enemy_normal[4].pos.x - 10, enemy_normal[4].pos.y - 10, enemy_normal[4].radius, enemy_normal[4].radius);
         }
     }
     private: System::Void playgameform_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -453,13 +486,18 @@ namespace defense_mission {
                this->button29 = (gcnew System::Windows::Forms::Button());
                this->button30 = (gcnew System::Windows::Forms::Button());
                this->button31 = (gcnew System::Windows::Forms::Button());
+               this->label2 = (gcnew System::Windows::Forms::Label());
+               this->label3 = (gcnew System::Windows::Forms::Label());
+               this->label4 = (gcnew System::Windows::Forms::Label());
+               this->label5 = (gcnew System::Windows::Forms::Label());
+               this->label6 = (gcnew System::Windows::Forms::Label());
                (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
                this->SuspendLayout();
                // 
                // button1
                // 
                this->button1->BackColor = System::Drawing::Color::Gold;
-               this->button1->Font = (gcnew System::Drawing::Font(L"�s�ө���", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+               this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(136)));
                this->button1->Location = System::Drawing::Point(782, 0);
                this->button1->Margin = System::Windows::Forms::Padding(2);
@@ -534,11 +572,11 @@ namespace defense_mission {
                // label1
                // 
                this->label1->AutoSize = true;
-               this->label1->Font = (gcnew System::Drawing::Font(L"�s�ө���", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+               this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(136)));
-               this->label1->Location = System::Drawing::Point(38, 24);
+               this->label1->Location = System::Drawing::Point(36, 20);
                this->label1->Name = L"label1";
-               this->label1->Size = System::Drawing::Size(53, 20);
+               this->label1->Size = System::Drawing::Size(64, 25);
                this->label1->TabIndex = 7;
                this->label1->Text = L"label1";
                // 
@@ -847,12 +885,77 @@ namespace defense_mission {
                this->button31->Visible = false;
                this->button31->Click += gcnew System::EventHandler(this, &playgameform::button31_Click);
                // 
+               // label2
+               // 
+               this->label2->AutoSize = true;
+               this->label2->BackColor = System::Drawing::Color::Black;
+               this->label2->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label2->ForeColor = System::Drawing::Color::White;
+               this->label2->Location = System::Drawing::Point(819, 114);
+               this->label2->Name = L"label2";
+               this->label2->Size = System::Drawing::Size(93, 20);
+               this->label2->TabIndex = 33;
+               this->label2->Text = L"(´・ω・`)";
+               // 
+               // label3
+               // 
+               this->label3->AutoSize = true;
+               this->label3->BackColor = System::Drawing::Color::Black;
+               this->label3->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label3->ForeColor = System::Drawing::Color::White;
+               this->label3->Location = System::Drawing::Point(819, 195);
+               this->label3->Name = L"label3";
+               this->label3->Size = System::Drawing::Size(93, 20);
+               this->label3->TabIndex = 34;
+               this->label3->Text = L"(´・ω・`)";
+               // 
+               // label4
+               // 
+               this->label4->AutoSize = true;
+               this->label4->BackColor = System::Drawing::Color::Black;
+               this->label4->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label4->ForeColor = System::Drawing::Color::White;
+               this->label4->Location = System::Drawing::Point(819, 270);
+               this->label4->Name = L"label4";
+               this->label4->Size = System::Drawing::Size(93, 20);
+               this->label4->TabIndex = 35;
+               this->label4->Text = L"(´・ω・`)";
+               // 
+               // label5
+               // 
+               this->label5->AutoSize = true;
+               this->label5->BackColor = System::Drawing::Color::Black;
+               this->label5->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label5->ForeColor = System::Drawing::Color::White;
+               this->label5->Location = System::Drawing::Point(819, 340);
+               this->label5->Name = L"label5";
+               this->label5->Size = System::Drawing::Size(93, 20);
+               this->label5->TabIndex = 36;
+               this->label5->Text = L"(´・ω・`)";
+               // 
+               // label6
+               // 
+               this->label6->AutoSize = true;
+               this->label6->BackColor = System::Drawing::Color::Black;
+               this->label6->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label6->ForeColor = System::Drawing::Color::White;
+               this->label6->Location = System::Drawing::Point(819, 413);
+               this->label6->Name = L"label6";
+               this->label6->Size = System::Drawing::Size(93, 20);
+               this->label6->TabIndex = 37;
+               this->label6->Text = L"(´・ω・`)";
+               // 
                // playgameform
                // 
                this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
                this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
                this->BackColor = System::Drawing::Color::LemonChiffon;
                this->ClientSize = System::Drawing::Size(886, 522);
+               this->Controls->Add(this->label6);
+               this->Controls->Add(this->label5);
+               this->Controls->Add(this->label4);
+               this->Controls->Add(this->label3);
+               this->Controls->Add(this->label2);
                this->Controls->Add(this->button31);
                this->Controls->Add(this->button30);
                this->Controls->Add(this->button29);
@@ -895,19 +998,6 @@ namespace defense_mission {
 
            }
 
-           void plot_HMI() {
-               Graphics^ e1 = this->CreateGraphics();
-               e1->Clear(Color::WhiteSmoke);
-               Pen^ pen_b = gcnew Pen(Color::Blue, 2);
-               Pen^ pen_y = gcnew Pen(Color::Yellow, 2);
-               Pen^ pen_r = gcnew Pen(Color::Red, 2);
-               Pen^ pen_p = gcnew Pen(Color::Purple, 2);
-
-               // plot laser
-               e1->DrawEllipse(pen_b, 174.0, 77.0, laser->radius, laser->radius);
-               e1->DrawLine(pen_b, 174, 77, 214, 77);
-           }
-
            void text_displayer() {
                this->label1->Text = ("Money: " + Convert::ToString(coin));
            }
@@ -919,11 +1009,13 @@ namespace defense_mission {
            void initialize() {
                // gun
                for (int i = 0; i < 5; i++) {
+                   // radius
                    laser[i].radius = 20;
                    machine[i].radius = 20;
                    Cannon[i].radius = 20;
                    Landmine[i].radius = 15;
                    Bomb[i].radius = 20;
+                   // position
                    laser[i].pos.x = 184;
                    machine[i].pos.x = 280;
                    Cannon[i].pos.x = 360;
@@ -964,6 +1056,18 @@ namespace defense_mission {
                        Landmine[i].pos.y = 343;
                        Bomb[i].pos.y = 343;
                    }
+                   // life
+                   laser[i].life = 3;
+                   machine[i].life = 4;
+                   Cannon[i].life = 5;
+                   // damage
+                   laser[i].damage = 3;
+                   machine[i].damage = 1;
+                   Cannon[i].damage = 5;
+                   // shoot_v
+                   laser[i].shoot_v = 5;
+                   machine[i].shoot_v = 20;
+                   Cannon[i].shoot_v = 50;
                }
 
                // weapon
@@ -972,9 +1076,32 @@ namespace defense_mission {
                    lasergun_wea[i].pos.x = 184;
                    cannon_wea[i].pos.x = 350;
                }
-               for (int i = 0; i < 5 * 5; i++) {
+               for (int i = 0; i < 5 * 10; i++) {
                    machinegun_wea[i].radius = 5;
                    machinegun_wea[i].pos.x = 280;
+               }
+
+               // enemy
+               for (int i = 0; i < 5; i++) {
+                   enemy_normal[i].damage = 1;
+                   enemy_normal[i].life = 20;
+                   enemy_normal[i].radius = 20;
+                   enemy_normal[i].pos.x = 850;
+                   if (i == 0) {
+                       enemy_normal[i].pos.y = 44;
+                   }
+                   else if (i == 1) {
+                       enemy_normal[i].pos.y = 125;
+                   }
+                   else if (i == 2) {
+                       enemy_normal[i].pos.y = 200;
+                   }
+                   else if (i == 3) {
+                       enemy_normal[i].pos.y = 270;
+                   }
+                   else{
+                       enemy_normal[i].pos.y = 343;
+                   }
                }
            }
 
@@ -1221,36 +1348,36 @@ namespace defense_mission {
     private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) { // map[5]
         map[5] = true;
         button_hidden();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             this->machinegun_wea[0 + i].now_time = system_counter + i * 10;
         }
     }
     private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) { // map[6]
         map[6] = true;
         button_hidden();
-        for (int i = 0; i < 5; i++) {
-            this->machinegun_wea[5 + i].now_time = system_counter + i * 10;
+        for (int i = 0; i < 10; i++) {
+            this->machinegun_wea[10 + i].now_time = system_counter + i * 10;
         }
     }
     private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) { // map[7]
         map[7] = true;
         button_hidden();
-        for (int i = 0; i < 5; i++) {
-            this->machinegun_wea[10 + i].now_time = system_counter + i * 10;
+        for (int i = 0; i < 10; i++) {
+            this->machinegun_wea[20 + i].now_time = system_counter + i * 10;
         }
     }
     private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) { // map[8]
         map[8] = true;
         button_hidden();
-        for (int i = 0; i < 5; i++) {
-            this->machinegun_wea[15 + i].now_time = system_counter + i * 10;
+        for (int i = 0; i < 10; i++) {
+            this->machinegun_wea[30 + i].now_time = system_counter + i * 10;
         }
     }
     private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) { // map[9]
         map[9] = true;
         button_hidden();
-        for (int i = 0; i < 5; i++) {
-            this->machinegun_wea[20 + i].now_time = system_counter + i * 10;
+        for (int i = 0; i < 10; i++) {
+            this->machinegun_wea[40 + i].now_time = system_counter + i * 10;
         }
     }
     private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) { // map[10]
