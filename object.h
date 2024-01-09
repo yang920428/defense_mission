@@ -1,4 +1,5 @@
 #pragma once
+#include <math.h>
 
 class position {
 public:
@@ -59,3 +60,4 @@ class landmine : public weapon {
 class bomb : public weapon {
 
 };
+

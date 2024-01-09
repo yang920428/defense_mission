@@ -4,6 +4,7 @@
 #include <vector>
 #include "object.h"
 #include "gameoverform.h"
+#include <math.h>
 
 namespace defense_mission {
 
@@ -46,6 +47,7 @@ namespace defense_mission {
         float mouseX;
         float mouseY;
         float dt = 0.1;
+        bool game = true;
 
     private: System::Windows::Forms::Button^ button7;
     public:
@@ -122,6 +124,12 @@ namespace defense_mission {
             if ((system_counter - this->lasergun_wea[0].now_time) % laser[0].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[0].pos.x + 10, laser[0].pos.y, laser[0].pos.x + 510, laser[0].pos.y);
+                if (enemy_normal[0].pos.x <= laser[0].pos.x + 510) {
+                    enemy_normal[0].life -= lasergun_wea[0].damage;
+                    if (enemy_normal[0].life <= 0) {
+                        enemy_normal[0].pos.x = 850;
+                    }
+                }
             }
         }
         if (map[1] == true) {
@@ -132,6 +140,12 @@ namespace defense_mission {
             if ((system_counter - this->lasergun_wea[1].now_time) % laser[1].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[1].pos.x + 10, laser[1].pos.y, laser[1].pos.x + 510, laser[1].pos.y);
+                if (enemy_normal[1].pos.x <= laser[1].pos.x + 510) {
+                    enemy_normal[1].life -= lasergun_wea[1].damage;
+                    if (enemy_normal[1].life <= 0) {
+                        enemy_normal[1].pos.x = 850;
+                    }
+                }
             }
         }
         if (map[2] == true) {
@@ -142,6 +156,12 @@ namespace defense_mission {
             if ((system_counter - this->lasergun_wea[2].now_time) % laser[2].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[2].pos.x + 10, laser[2].pos.y, laser[2].pos.x + 510, laser[2].pos.y);
+                if (enemy_normal[2].pos.x <= laser[2].pos.x + 510) {
+                    enemy_normal[2].life -= lasergun_wea[2].damage;
+                    if (enemy_normal[2].life <= 0) {
+                        enemy_normal[2].pos.x = 850;
+                    }
+                }
             }
         }
         if (map[3] == true) {
@@ -152,6 +172,12 @@ namespace defense_mission {
             if ((system_counter - this->lasergun_wea[3].now_time) % laser[3].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[3].pos.x + 10, laser[3].pos.y, laser[3].pos.x + 510, laser[3].pos.y);
+                if (enemy_normal[3].pos.x <= laser[3].pos.x + 510) {
+                    enemy_normal[3].life -= lasergun_wea[3].damage;
+                    if (enemy_normal[3].life <= 0) {
+                        enemy_normal[3].pos.x = 850;
+                    }
+                }
             }
         }
         if (map[4] == true) {
@@ -162,6 +188,12 @@ namespace defense_mission {
             if ((system_counter - this->lasergun_wea[4].now_time) % laser[4].shoot_v == 0) {
                 Pen^ pen_y4 = gcnew Pen(Color::Yellow, 8);
                 g->DrawLine(pen_y4, laser[4].pos.x + 10, laser[4].pos.y, laser[4].pos.x + 510, laser[4].pos.y);
+                if (enemy_normal[4].pos.x <= laser[4].pos.x + 510) {
+                    enemy_normal[4].life -= lasergun_wea[4].damage;
+                    if (enemy_normal[3].life <= 0) {
+                        enemy_normal[3].pos.x = 850;
+                    }
+                }
             }
         }
         // machine gun
@@ -1086,12 +1118,8 @@ namespace defense_mission {
                     }
                    if (!isbreak) enemy_normal[i].pos.x -= 2;
                    if (enemy_normal[i].pos.x  <=160) {
-                       gameoverform^ gameover = gcnew gameoverform();
-
-                       // 顯示SecondForm
-                       gameover->Show();
-                       this->Close();
-                       break;
+                       game = false;
+                       
                    }
                     
                    
@@ -1124,6 +1152,34 @@ namespace defense_mission {
                this->label4->Location = System::Drawing::Point(enemy_normal[2].pos.x - 31, 270);
                this->label5->Location = System::Drawing::Point(enemy_normal[3].pos.x - 31, 340);
                this->label6->Location = System::Drawing::Point(enemy_normal[4].pos.x - 31, 413);
+           }
+
+           void collision() {
+               for (int i = 0; i < 5; i++) {
+                   //machine gun 
+                   for (int j = 0; j < 10; j++) {
+                       float dis = sqrt((machinegun_wea[10 * i + j].pos.x - enemy_normal[i].pos.x) * (machinegun_wea[10 * i + j].pos.x - enemy_normal[i].pos.x) + (machinegun_wea[10 * i + j].pos.y - enemy_normal[i].pos.y) * (machinegun_wea[10 * i + j].pos.y - enemy_normal[i].pos.y));
+                       if (dis <= 20) {
+                           enemy_normal[i].life -= machinegun_wea[10 * i + j].damage;
+                           machinegun_wea[10 * i + j].pos.x = machine[i].pos.x;
+                           if (enemy_normal[i].life <= 0) {
+                               //enemy_normal[i].enable = false;
+                               enemy_normal[i].pos.x = 850;
+                           }
+                       }
+                   }
+
+                   // cannon
+                   float dis = sqrt((cannon_wea[i].pos.x - enemy_normal[i].pos.x) * (cannon_wea[i].pos.x - enemy_normal[i].pos.x) + (cannon_wea[i].pos.y - enemy_normal[i].pos.y) * (cannon_wea[i].pos.y - enemy_normal[i].pos.y));
+                   if ( dis<= 20) {
+                       enemy_normal[i].life -= cannon_wea[i].damage;
+                       cannon_wea[i].pos.x = Cannon[i].pos.x;
+                       if (enemy_normal[i].life <= 0) {
+                           //enemy_normal[i].enable = false;
+                           enemy_normal[i].pos.x = 850;
+                       }
+                   }
+               }
            }
 
            void initialize() {
@@ -1195,11 +1251,17 @@ namespace defense_mission {
                    cannon_wea[i].radius = 20;
                    lasergun_wea[i].pos.x = 184;
                    cannon_wea[i].pos.x = 350;
+                   cannon_wea[i].damage = 3;
+                   lasergun_wea[i].damage = 2;
                }
                for (int i = 0; i < 5 * 10; i++) {
                    machinegun_wea[i].radius = 5;
                    machinegun_wea[i].pos.x = 280;
+                   machinegun_wea[i].pos.y = machine[i / 10].pos.y;
+                   machinegun_wea[i].damage = 1;
                }
+               
+        
 
                // enemy
                for (int i = 0; i < 5; i++) {
@@ -1397,6 +1459,13 @@ namespace defense_mission {
 #pragma endregion
     private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
         // main
+        if (!game) {
+            gameoverform^ gameover = gcnew gameoverform();
+
+            // 顯示SecondForm
+            gameover->Show();
+            this->Close();
+        }
         if (system_counter == 0) {
             initialize();
 
@@ -1404,6 +1473,7 @@ namespace defense_mission {
 
         Motion();
         //plot_HMI();
+        collision();
         text_displayer();
         pictureBox1->Invalidate();
         system_counter++;
