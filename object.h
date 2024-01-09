@@ -60,4 +60,3 @@ class landmine : public weapon {
 class bomb : public weapon {
 
 };
-

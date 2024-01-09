@@ -5,6 +5,7 @@
 #include "object.h"
 #include "gameoverform.h"
 #include <math.h>
+#include "nextform2.h"
 
 namespace defense_mission {
 
@@ -31,7 +32,7 @@ namespace defense_mission {
             this->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &playgameform::playgameform_MouseClick);
         }
         // some variable
-        int coin = 1000;
+        int coin = 500;
         int system_counter = 0;
         enemy* enemy_normal = new enemy[5]();
         weapon* lasergun_wea = new weapon[5]();
@@ -426,7 +427,7 @@ namespace defense_mission {
         // bomb
         if (map[20] == true) {
             Graphics^ g = e->Graphics;
-            Pen^ pen_br = gcnew Pen(Color::Brown, 20 + (system_counter-Bomb[0].now_time)*0.5);
+            Pen^ pen_br = gcnew Pen(Color::Brown, 20 + (system_counter - Bomb[0].now_time) * 0.5);
             int notation = 0;
             g->DrawEllipse(pen_br, Bomb[notation].pos.x + 10, Bomb[notation].pos.y - 10, Bomb[notation].radius + (system_counter - Bomb[notation].now_time) * 0.5, Bomb[notation].radius + (system_counter - Bomb[notation].now_time) * 0.5);
         }
@@ -1106,7 +1107,7 @@ namespace defense_mission {
                                    isbreak = false;
                                    cannon_wea[i].enable = false;
                                }
-                            
+
                            }
                            /*else if (layer == 3 &&  enemy_normal[i].pos.x  <= Landmine[i].pos.x) {
                                enemy_normal[i].pos.x = Landmine[i].pos.x;
@@ -1114,17 +1115,17 @@ namespace defense_mission {
                            else if (layer == 4 &&  enemy_normal[i].pos.x  <= Bomb[i].pos.x) {
                                enemy_normal[i].pos.x = Bomb[i].pos.x;
                            }*/
-                           
+
                        }
-                       
-                    }
-                   if (!isbreak) enemy_normal[i].pos.x -= 2;
-                   if (enemy_normal[i].pos.x  <=160) {
-                       game = false;
-                       
+
                    }
-                    
-                   
+                   if (!isbreak) enemy_normal[i].pos.x -= 2;
+                   if (enemy_normal[i].pos.x <= 160) {
+                       game = false;
+
+                   }
+
+
                    //if (layer != -1) {
                    //    if (layer == 0  && enemy_normal[i].pos.x - 50 <= laser[i].pos.x) {
                    //        enemy_normal[i].pos.x = laser[i].pos.x;
@@ -1149,8 +1150,8 @@ namespace defense_mission {
                    //else enemy_normal[i].pos.x -= 2;
 
                }
-               this->label2->Location = System::Drawing::Point(enemy_normal[0].pos.x-31, 114);
-               this->label3->Location = System::Drawing::Point(enemy_normal[1].pos.x -31, 195);
+               this->label2->Location = System::Drawing::Point(enemy_normal[0].pos.x - 31, 114);
+               this->label3->Location = System::Drawing::Point(enemy_normal[1].pos.x - 31, 195);
                this->label4->Location = System::Drawing::Point(enemy_normal[2].pos.x - 31, 270);
                this->label5->Location = System::Drawing::Point(enemy_normal[3].pos.x - 31, 340);
                this->label6->Location = System::Drawing::Point(enemy_normal[4].pos.x - 31, 413);
@@ -1176,7 +1177,7 @@ namespace defense_mission {
 
                    // cannon
                    dis = sqrt((cannon_wea[i].pos.x - enemy_normal[i].pos.x) * (cannon_wea[i].pos.x - enemy_normal[i].pos.x) + (cannon_wea[i].pos.y - enemy_normal[i].pos.y) * (cannon_wea[i].pos.y - enemy_normal[i].pos.y));
-                   if ( dis<= 20 && cannon_wea[i].enable) {
+                   if (dis <= 20 && cannon_wea[i].enable) {
                        enemy_normal[i].life -= cannon_wea[i].damage;
                        cannon_wea[i].pos.x = Cannon[i].pos.x;
                        if (enemy_normal[i].life <= 0) {
@@ -1189,7 +1190,7 @@ namespace defense_mission {
                    }
 
                    // landmind
-                   dis = sqrt( (Landmine[i].pos.x - enemy_normal[i].pos.x) * (Landmine[i].pos.x - enemy_normal[i].pos.x) + (Landmine[i].pos.y - enemy_normal[i].pos.y) * (Landmine[i].pos.y - enemy_normal[i].pos.y));
+                   dis = sqrt((Landmine[i].pos.x - enemy_normal[i].pos.x) * (Landmine[i].pos.x - enemy_normal[i].pos.x) + (Landmine[i].pos.y - enemy_normal[i].pos.y) * (Landmine[i].pos.y - enemy_normal[i].pos.y));
                    if (dis <= 30 && Landmine[i].enable) {
                        enemy_normal[i].life -= Landmine[i].damage;
                        map[15 + i] = false;
@@ -1273,9 +1274,9 @@ namespace defense_mission {
                        Bomb[i].pos.y = 343;
                    }
                    // life
-                   laser[i].life = 3*12;
-                   machine[i].life = 4* 12;
-                   Cannon[i].life = 5* 12;
+                   laser[i].life = 3 * 12;
+                   machine[i].life = 4 * 12;
+                   Cannon[i].life = 5 * 12;
                    // damage
                    laser[i].damage = 3;
                    machine[i].damage = 1;
@@ -1302,8 +1303,8 @@ namespace defense_mission {
                    machinegun_wea[i].pos.y = machine[i / 10].pos.y;
                    machinegun_wea[i].damage = 1;
                }
-               
-        
+
+
 
                // enemy
                for (int i = 0; i < 5; i++) {
@@ -1513,6 +1514,14 @@ namespace defense_mission {
 
         }
 
+        if (killed >= 20) {
+            nextform2^ nextform = gcnew nextform2();
+
+            // 顯示SecondForm
+            nextform->Show();
+            this->Close();
+        }
+
         Motion();
         //plot_HMI();
         collision();
@@ -1530,14 +1539,14 @@ namespace defense_mission {
         }
     }
     private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) { // machine gun
-        if (coin >= 40) {
-            coin -= 40;
+        if (coin >= 50) {
+            coin -= 50;
             button_display_machine();
         }
     }
     private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) { // cannon
-        if (coin >= 50) {
-            coin -= 50;
+        if (coin >= 40) {
+            coin -= 40;
             button_display_cannon();
         }
     }
