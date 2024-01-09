@@ -1,4 +1,5 @@
 #pragma once
+#include "playgameform2.h"
 
 namespace defense_mission {
 
@@ -111,6 +112,11 @@ namespace defense_mission {
         }
 #pragma endregion
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+        playgameform2^ play2 = gcnew playgameform2();
+
+        // Åã¥ÜSecondForm
+        play2->Show();
+        
         this->Close();
     }
     private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {

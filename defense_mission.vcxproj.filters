@@ -44,6 +44,9 @@
     <ClInclude Include="nextform2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="playgameform2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinFormsProject.cpp">
@@ -71,6 +74,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="nextform2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="playgameform2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

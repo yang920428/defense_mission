@@ -147,6 +147,9 @@
     <ClInclude Include="playgameform.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="playgameform2.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +167,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="playgameform.cpp" />
+    <ClCompile Include="playgameform2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />

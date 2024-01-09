@@ -32,7 +32,7 @@ namespace defense_mission {
             this->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &playgameform::playgameform_MouseClick);
         }
         // some variable
-        int coin = 500;
+        int coin = 240;
         int system_counter = 0;
         enemy* enemy_normal = new enemy[5]();
         weapon* lasergun_wea = new weapon[5]();
@@ -52,6 +52,7 @@ namespace defense_mission {
         float* dis_b = new float[5]();
         bool game = true;
         int killed;
+        int initial_enemy_life = 150;
 
     private: System::Windows::Forms::Button^ button7;
     public:
@@ -133,7 +134,7 @@ namespace defense_mission {
                     enemy_normal[0].life -= lasergun_wea[0].damage;
                     if (enemy_normal[0].life <= 0) {
                         enemy_normal[0].pos.x = 850;
-                        enemy_normal[0].life = 200;
+                        enemy_normal[0].life = initial_enemy_life;
                         killed++;
                         coin += 20;
                     }
@@ -152,7 +153,7 @@ namespace defense_mission {
                     enemy_normal[1].life -= lasergun_wea[1].damage;
                     if (enemy_normal[1].life <= 0) {
                         enemy_normal[1].pos.x = 850;
-                        enemy_normal[0].life = 200;
+                        enemy_normal[1].life = initial_enemy_life;
                         killed++;
                         coin += 20;
                     }
@@ -171,7 +172,7 @@ namespace defense_mission {
                     enemy_normal[2].life -= lasergun_wea[2].damage;
                     if (enemy_normal[2].life <= 0) {
                         enemy_normal[2].pos.x = 850;
-                        enemy_normal[0].life = 200;
+                        enemy_normal[2].life = initial_enemy_life;
                         killed++;
                         coin += 20;
                     }
@@ -190,7 +191,7 @@ namespace defense_mission {
                     enemy_normal[3].life -= lasergun_wea[3].damage;
                     if (enemy_normal[3].life <= 0) {
                         enemy_normal[3].pos.x = 850;
-                        enemy_normal[0].life = 200;
+                        enemy_normal[3].life = initial_enemy_life;
                         killed++;
                         coin += 20;
                     }
@@ -207,9 +208,9 @@ namespace defense_mission {
                 g->DrawLine(pen_y4, laser[4].pos.x + 10, laser[4].pos.y, laser[4].pos.x + 510, laser[4].pos.y);
                 if (enemy_normal[4].pos.x <= laser[4].pos.x + 510) {
                     enemy_normal[4].life -= lasergun_wea[4].damage;
-                    if (enemy_normal[3].life <= 0) {
-                        enemy_normal[3].pos.x = 850;
-                        enemy_normal[0].life = 200;
+                    if (enemy_normal[4].life <= 0) {
+                        enemy_normal[4].pos.x = 850;
+                        enemy_normal[4].life = initial_enemy_life;
                         killed++;
                         coin += 20;
                     }
@@ -1168,7 +1169,7 @@ namespace defense_mission {
                            if (enemy_normal[i].life <= 0) {
                                //enemy_normal[i].enable = false;
                                enemy_normal[i].pos.x = 850;
-                               enemy_normal[i].life = 200;
+                               enemy_normal[i].life = initial_enemy_life;
                                killed++;
                                coin += 20;
                            }
@@ -1183,7 +1184,7 @@ namespace defense_mission {
                        if (enemy_normal[i].life <= 0) {
                            //enemy_normal[i].enable = false;
                            enemy_normal[i].pos.x = 850;
-                           enemy_normal[i].life = 200;
+                           enemy_normal[i].life = initial_enemy_life;
                            killed++;
                            coin += 20;
                        }
@@ -1198,7 +1199,7 @@ namespace defense_mission {
                        if (enemy_normal[i].life <= 0) {
                            //enemy_normal[i].enable = false;
                            enemy_normal[i].pos.x = 850;
-                           enemy_normal[i].life = 200;
+                           enemy_normal[i].life = initial_enemy_life;
                            killed++;
                            coin += 20;
                        }
@@ -1212,7 +1213,7 @@ namespace defense_mission {
                            if (enemy_normal[i].life <= 0) {
                                //enemy_normal[i].enable = false;
                                enemy_normal[i].pos.x = 850;
-                               enemy_normal[i].life = 200;
+                               enemy_normal[i].life = initial_enemy_life;
                                killed++;
                                coin += 20;
                            }
@@ -1309,7 +1310,7 @@ namespace defense_mission {
                // enemy
                for (int i = 0; i < 5; i++) {
                    enemy_normal[i].damage = 1;
-                   enemy_normal[i].life = 200;
+                   enemy_normal[i].life = initial_enemy_life;
                    enemy_normal[i].radius = 20;
                    enemy_normal[i].pos.x = 850;
                    if (i == 0) {
