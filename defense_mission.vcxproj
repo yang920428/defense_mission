@@ -150,6 +150,9 @@
     <ClInclude Include="playgameform2.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="playgameform3.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +171,7 @@
     </ClCompile>
     <ClCompile Include="playgameform.cpp" />
     <ClCompile Include="playgameform2.cpp" />
+    <ClCompile Include="playgameform3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="app.ico" />
