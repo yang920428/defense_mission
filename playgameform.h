@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <vector>
 #include "object.h"
+#include "gameoverform.h"
 
 namespace defense_mission {
 
@@ -1084,7 +1085,14 @@ namespace defense_mission {
                        
                     }
                    if (!isbreak) enemy_normal[i].pos.x -= 2;
+                   if (enemy_normal[i].pos.x  <=160) {
+                       gameoverform^ gameover = gcnew gameoverform();
 
+                       // 顯示SecondForm
+                       gameover->Show();
+                       this->Close();
+                       break;
+                   }
                     
                    
                    //if (layer != -1) {

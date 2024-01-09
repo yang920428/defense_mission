@@ -133,6 +133,9 @@
     <ClInclude Include="Form1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="gameoverform.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="gameruleform.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -147,6 +150,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CppCLR_WinFormsProject.cpp" />
     <ClCompile Include="Form1.cpp" />
+    <ClCompile Include="gameoverform.cpp" />
     <ClCompile Include="gameruleform.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="pch.cpp">
@@ -170,6 +174,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gameoverform.resx">
+      <DependentUpon>gameoverform.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gameruleform.resx">
       <DependentUpon>gameruleform.h</DependentUpon>
