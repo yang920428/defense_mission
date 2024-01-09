@@ -1085,6 +1085,9 @@ namespace defense_mission {
                                if (laser[i].life <= 0) {
                                    map[5 * j + i] = false;
                                    isbreak = false;
+                                   //for (int t = 0; t < 10; t++) {
+
+                                   //}
                                }
                            }
                            else if (j == 1 && enemy_normal[i].pos.x - 50 == machine[i].pos.x) {
@@ -1094,6 +1097,9 @@ namespace defense_mission {
                                if (machine[i].life <= 0) {
                                    map[5 * j + i] = false;
                                    isbreak = false;
+                                   for (int t = 0; t < 10; t++) {
+                                       machinegun_wea[10 * i + t].enable = false;
+                                   }
                                }
                            }
                            else if (j == 2 && enemy_normal[i].pos.x - 50 == Cannon[i].pos.x) {
@@ -1103,6 +1109,7 @@ namespace defense_mission {
                                if (Cannon[i].life <= 0) {
                                    map[5 * j + i] = false;
                                    isbreak = false;
+                                   cannon_wea[i].enable = false;
                                }
                             
                            }
@@ -1159,7 +1166,7 @@ namespace defense_mission {
                    //machine gun 
                    for (int j = 0; j < 10; j++) {
                        float dis = sqrt((machinegun_wea[10 * i + j].pos.x - enemy_normal[i].pos.x) * (machinegun_wea[10 * i + j].pos.x - enemy_normal[i].pos.x) + (machinegun_wea[10 * i + j].pos.y - enemy_normal[i].pos.y) * (machinegun_wea[10 * i + j].pos.y - enemy_normal[i].pos.y));
-                       if (dis <= 20) {
+                       if (dis <= 20 && machinegun_wea[10 * i + j].enable) {
                            enemy_normal[i].life -= machinegun_wea[10 * i + j].damage;
                            machinegun_wea[10 * i + j].pos.x = machine[i].pos.x;
                            if (enemy_normal[i].life <= 0) {
@@ -1171,7 +1178,7 @@ namespace defense_mission {
 
                    // cannon
                    float dis = sqrt((cannon_wea[i].pos.x - enemy_normal[i].pos.x) * (cannon_wea[i].pos.x - enemy_normal[i].pos.x) + (cannon_wea[i].pos.y - enemy_normal[i].pos.y) * (cannon_wea[i].pos.y - enemy_normal[i].pos.y));
-                   if ( dis<= 20) {
+                   if ( dis<= 20 && cannon_wea[i].enable) {
                        enemy_normal[i].life -= cannon_wea[i].damage;
                        cannon_wea[i].pos.x = Cannon[i].pos.x;
                        if (enemy_normal[i].life <= 0) {
@@ -1266,7 +1273,7 @@ namespace defense_mission {
                // enemy
                for (int i = 0; i < 5; i++) {
                    enemy_normal[i].damage = 1;
-                   enemy_normal[i].life = 20;
+                   enemy_normal[i].life = 200;
                    enemy_normal[i].radius = 20;
                    enemy_normal[i].pos.x = 850;
                    if (i == 0) {
@@ -1541,6 +1548,7 @@ namespace defense_mission {
         button_hidden();
         for (int i = 0; i < 10; i++) {
             this->machinegun_wea[0 + i].now_time = system_counter + i * 10;
+            this->machinegun_wea[0 + i].enable = true;
         }
     }
     private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) { // map[6]
@@ -1548,6 +1556,7 @@ namespace defense_mission {
         button_hidden();
         for (int i = 0; i < 10; i++) {
             this->machinegun_wea[10 + i].now_time = system_counter + i * 10;
+            this->machinegun_wea[10 + i].enable = true;
         }
     }
     private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) { // map[7]
@@ -1555,6 +1564,7 @@ namespace defense_mission {
         button_hidden();
         for (int i = 0; i < 10; i++) {
             this->machinegun_wea[20 + i].now_time = system_counter + i * 10;
+            this->machinegun_wea[20 + i].enable = true;
         }
     }
     private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) { // map[8]
@@ -1562,6 +1572,7 @@ namespace defense_mission {
         button_hidden();
         for (int i = 0; i < 10; i++) {
             this->machinegun_wea[30 + i].now_time = system_counter + i * 10;
+            this->machinegun_wea[30 + i].enable = true;
         }
     }
     private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) { // map[9]
@@ -1569,27 +1580,33 @@ namespace defense_mission {
         button_hidden();
         for (int i = 0; i < 10; i++) {
             this->machinegun_wea[40 + i].now_time = system_counter + i * 10;
+            this->machinegun_wea[40 + i].enable = true;
         }
     }
     private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) { // map[10]
         map[10] = true;
         button_hidden();
+        this->cannon_wea[0].enable = 1;
     }
     private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) { // map[11]
         map[11] = true;
         button_hidden();
+        this->cannon_wea[1].enable = 1;
     }
     private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) { // map[12]
         map[12] = true;
         button_hidden();
+        this->cannon_wea[2].enable = 1;
     }
     private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) { // map[13]
         map[13] = true;
         button_hidden();
+        this->cannon_wea[3].enable = 1;
     }
     private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) { // map[14]
         map[14] = true;
         button_hidden();
+        this->cannon_wea[4].enable = 1;
     }
     private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) { // map[15]
         map[15] = true;
