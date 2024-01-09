@@ -1048,14 +1048,30 @@ namespace defense_mission {
                            if (j == 0 && enemy_normal[i].pos.x - 50 == laser[i].pos.x) {
                                enemy_normal[i].pos.x = laser[i].pos.x + 50;
                                isbreak = true;
+                               laser[i].life -= enemy_normal[i].damage;
+                               if (laser[i].life <= 0) {
+                                   map[5 * j + i] = false;
+                                   isbreak = false;
+                               }
                            }
                            else if (j == 1 && enemy_normal[i].pos.x - 50 == machine[i].pos.x) {
                                enemy_normal[i].pos.x = machine[i].pos.x + 50;
                                isbreak = true;
+                               machine[i].life -= enemy_normal[i].damage;
+                               if (machine[i].life <= 0) {
+                                   map[5 * j + i] = false;
+                                   isbreak = false;
+                               }
                            }
                            else if (j == 2 && enemy_normal[i].pos.x - 50 == Cannon[i].pos.x) {
                                enemy_normal[i].pos.x = Cannon[i].pos.x + 50;
                                isbreak = true;
+                               Cannon[i].life -= enemy_normal[i].damage;
+                               if (Cannon[i].life <= 0) {
+                                   map[5 * j + i] = false;
+                                   isbreak = false;
+                               }
+                            
                            }
                            /*else if (layer == 3 &&  enemy_normal[i].pos.x  <= Landmine[i].pos.x) {
                                enemy_normal[i].pos.x = Landmine[i].pos.x;
@@ -1153,9 +1169,9 @@ namespace defense_mission {
                        Bomb[i].pos.y = 343;
                    }
                    // life
-                   laser[i].life = 3;
-                   machine[i].life = 4;
-                   Cannon[i].life = 5;
+                   laser[i].life = 3*12;
+                   machine[i].life = 4* 12;
+                   Cannon[i].life = 5* 12;
                    // damage
                    laser[i].damage = 3;
                    machine[i].damage = 1;
