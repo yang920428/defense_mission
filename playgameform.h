@@ -53,6 +53,8 @@ namespace defense_mission {
         bool game = true;
         int killed;
         int initial_enemy_life = 150;
+        String^ musicFilePath = "D:\\Program_set\\project_cpp\\defense_mission\\winterflower.wav";
+        System::Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer(musicFilePath);
 
     private: System::Windows::Forms::Button^ button7;
     public:
@@ -1503,16 +1505,21 @@ namespace defense_mission {
 #pragma endregion
     private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
         // main
+        
         if (!game) {
             gameoverform^ gameover = gcnew gameoverform();
 
             // 顯示SecondForm
             gameover->Show();
             this->Close();
+            player->Stop();
         }
         if (system_counter == 0) {
             initialize();
+            
 
+            // 播放音樂
+            player->Play();
         }
 
         if (killed >= 20) {
@@ -1521,6 +1528,7 @@ namespace defense_mission {
             // 顯示SecondForm
             nextform->Show();
             this->Close();
+            player->Stop();
         }
 
         Motion();
@@ -1532,6 +1540,7 @@ namespace defense_mission {
     }
     private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) { // back
         this->Close();
+        player->Stop();
     }
     private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) { // laser gun
         if (coin >= 20) {
