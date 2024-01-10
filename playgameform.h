@@ -53,7 +53,7 @@ namespace defense_mission {
         bool game = true;
         int killed;
         int initial_enemy_life = 150;
-        String^ musicFilePath = "D:\\Program_set\\project_cpp\\defense_mission\\winterflower.wav";
+        String^ musicFilePath = "D:\\Program_set\\project_cpp\\defense_mission\\bgm1.wav";
         System::Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer(musicFilePath);
 
     private: System::Windows::Forms::Button^ button7;
@@ -557,7 +557,7 @@ namespace defense_mission {
                this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(136)));
                this->button1->Location = System::Drawing::Point(782, 0);
-               this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+               this->button1->Margin = System::Windows::Forms::Padding(2);
                this->button1->Name = L"button1";
                this->button1->Size = System::Drawing::Size(103, 34);
                this->button1->TabIndex = 0;
@@ -569,7 +569,7 @@ namespace defense_mission {
                // 
                this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
                this->pictureBox1->Location = System::Drawing::Point(1, 77);
-               this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+               this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
                this->pictureBox1->Name = L"pictureBox1";
                this->pictureBox1->Size = System::Drawing::Size(884, 394);
                this->pictureBox1->TabIndex = 1;
@@ -629,11 +629,10 @@ namespace defense_mission {
                // label1
                // 
                this->label1->AutoSize = true;
-               this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                   static_cast<System::Byte>(136)));
+               this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
                this->label1->Location = System::Drawing::Point(36, 20);
                this->label1->Name = L"label1";
-               this->label1->Size = System::Drawing::Size(64, 25);
+               this->label1->Size = System::Drawing::Size(79, 29);
                this->label1->TabIndex = 7;
                this->label1->Text = L"label1";
                // 
@@ -1005,9 +1004,10 @@ namespace defense_mission {
                // label7
                // 
                this->label7->AutoSize = true;
+               this->label7->Font = (gcnew System::Drawing::Font(L"新細明體", 12));
                this->label7->Location = System::Drawing::Point(665, 30);
                this->label7->Name = L"label7";
-               this->label7->Size = System::Drawing::Size(33, 12);
+               this->label7->Size = System::Drawing::Size(64, 24);
                this->label7->TabIndex = 38;
                this->label7->Text = L"label7";
                // 
@@ -1056,7 +1056,7 @@ namespace defense_mission {
                this->Controls->Add(this->button2);
                this->Controls->Add(this->pictureBox1);
                this->Controls->Add(this->button1);
-               this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+               this->Margin = System::Windows::Forms::Padding(2);
                this->Name = L"playgameform";
                this->Text = L"gaming";
                (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();

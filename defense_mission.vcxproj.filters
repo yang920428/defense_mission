@@ -50,6 +50,15 @@
     <ClInclude Include="playgameform3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="nextform3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinnerEnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winnerform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinFormsProject.cpp">
@@ -83,6 +92,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="playgameform3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nextform3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WinnerEnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winnerform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

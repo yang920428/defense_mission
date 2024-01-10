@@ -5,6 +5,7 @@
 #include "object.h"
 #include "gameoverform.h"
 #include <math.h>
+#include "nextform3.h"
 
 namespace defense_mission {
 
@@ -28,12 +29,13 @@ namespace defense_mission {
             //
             //TODO:  �b���[�J�غc�禡�{���X
             //
-            this->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &playgameform2::playgameform_MouseClick);
+            //this->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &playgameform2::playgameform_MouseClick);
         }
         // some variable
         int coin = 240;
         int system_counter = 0;
         enemy* enemy_normal = new enemy[5]();
+        enemy* enemy_mid = new enemy[5]();
         weapon* lasergun_wea = new weapon[5]();
         weapon* cannon_wea = new weapon[5]();
         weapon* machinegun_wea = new weapon[5 * 10]();
@@ -48,12 +50,14 @@ namespace defense_mission {
         float mouseY;
         float dt = 0.1;
         float dis;
+        float dis2;
         float* dis_b = new float[5]();
         bool game = true;
         int killed;
         int initial_enemy_life = 150;
-        String^ musicFilePath = "D:\\Program_set\\project_cpp\\defense_mission\\winterflower.wav";
-        System::Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer(musicFilePath);
+        int initial_enemy2_life = 1050;
+        String^ musicfilepath = "d:\\program_set\\project_cpp\\defense_mission\\bgm2.wav";
+        System::Media::SoundPlayer^ player = gcnew System::Media::SoundPlayer(musicfilepath);
 
     private: System::Windows::Forms::Button^ button7;
     public:
@@ -86,6 +90,11 @@ namespace defense_mission {
     private: System::Windows::Forms::Label^ label5;
     private: System::Windows::Forms::Label^ label6;
     private: System::Windows::Forms::Label^ label7;
+    private: System::Windows::Forms::Label^ label8;
+    private: System::Windows::Forms::Label^ label9;
+    private: System::Windows::Forms::Label^ label10;
+    private: System::Windows::Forms::Label^ label11;
+    private: System::Windows::Forms::Label^ label12;
 
 
     private: System::Windows::Forms::Button^ button31;
@@ -140,6 +149,15 @@ namespace defense_mission {
                         coin += 20;
                     }
                 }
+                if (enemy_mid[0].pos.x <= laser[0].pos.x + 510) {
+                    enemy_mid[0].life -= lasergun_wea[0].damage;
+                    if (enemy_mid[0].life <= 0) {
+                        enemy_mid[0].pos.x = 850;
+                        enemy_mid[0].life = initial_enemy2_life;
+                        killed++;
+                        coin += 30;
+                    }
+                }
             }
         }
         if (map[1] == true) {
@@ -157,6 +175,15 @@ namespace defense_mission {
                         enemy_normal[1].life = initial_enemy_life;
                         killed++;
                         coin += 20;
+                    }
+                }
+                if (enemy_mid[1].pos.x <= laser[1].pos.x + 510) {
+                    enemy_mid[1].life -= lasergun_wea[1].damage;
+                    if (enemy_mid[1].life <= 0) {
+                        enemy_mid[1].pos.x = 850;
+                        enemy_mid[1].life = initial_enemy2_life;
+                        killed++;
+                        coin += 30;
                     }
                 }
             }
@@ -178,6 +205,15 @@ namespace defense_mission {
                         coin += 20;
                     }
                 }
+                if (enemy_mid[2].pos.x <= laser[2].pos.x + 510) {
+                    enemy_mid[2].life -= lasergun_wea[2].damage;
+                    if (enemy_mid[2].life <= 0) {
+                        enemy_mid[2].pos.x = 850;
+                        enemy_mid[2].life = initial_enemy2_life;
+                        killed++;
+                        coin += 30;
+                    }
+                }
             }
         }
         if (map[3] == true) {
@@ -197,6 +233,15 @@ namespace defense_mission {
                         coin += 20;
                     }
                 }
+                if (enemy_mid[3].pos.x <= laser[3].pos.x + 510) {
+                    enemy_mid[3].life -= lasergun_wea[3].damage;
+                    if (enemy_mid[3].life <= 0) {
+                        enemy_mid[3].pos.x = 850;
+                        enemy_mid[3].life = initial_enemy2_life;
+                        killed++;
+                        coin += 30;
+                    }
+                }
             }
         }
         if (map[4] == true) {
@@ -214,6 +259,15 @@ namespace defense_mission {
                         enemy_normal[4].life = initial_enemy_life;
                         killed++;
                         coin += 20;
+                    }
+                }
+                if (enemy_mid[4].pos.x <= laser[4].pos.x + 510) {
+                    enemy_mid[4].life -= lasergun_wea[4].damage;
+                    if (enemy_mid[4].life <= 0) {
+                        enemy_mid[4].pos.x = 850;
+                        enemy_mid[4].life = initial_enemy2_life;
+                        killed++;
+                        coin += 30;
                     }
                 }
             }
@@ -457,6 +511,7 @@ namespace defense_mission {
             int notation = 4;
             g->DrawEllipse(pen_br, Bomb[notation].pos.x + 10, Bomb[notation].pos.y - 10, Bomb[notation].radius + (system_counter - Bomb[notation].now_time) * 0.5, Bomb[notation].radius + (system_counter - Bomb[notation].now_time) * 0.5);
         }
+        // enemy_normal
         if (enemy_normal[0].enable == true) {
             Graphics^ g = e->Graphics;
             Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[0].radius);
@@ -481,6 +536,32 @@ namespace defense_mission {
             Graphics^ g = e->Graphics;
             Pen^ pen_k = gcnew Pen(Color::Black, enemy_normal[4].radius);
             g->DrawEllipse(pen_k, enemy_normal[4].pos.x - 10, enemy_normal[4].pos.y - 10, enemy_normal[4].radius, enemy_normal[4].radius);
+        }
+        // enemy_mid
+        if (enemy_mid[0].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_or = gcnew Pen(Color::Orange, enemy_mid[0].radius);
+            g->DrawEllipse(pen_or, enemy_mid[0].pos.x - 10, enemy_mid[0].pos.y - 10, enemy_mid[0].radius, enemy_mid[0].radius);
+        }
+        if (enemy_mid[1].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_or = gcnew Pen(Color::Orange, enemy_mid[1].radius);
+            g->DrawEllipse(pen_or, enemy_mid[1].pos.x - 10, enemy_mid[1].pos.y - 10, enemy_mid[1].radius, enemy_mid[1].radius);
+        }
+        if (enemy_mid[2].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_or = gcnew Pen(Color::Orange, enemy_mid[2].radius);
+            g->DrawEllipse(pen_or, enemy_mid[2].pos.x - 10, enemy_mid[2].pos.y - 10, enemy_mid[2].radius, enemy_mid[2].radius);
+        }
+        if (enemy_mid[3].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_or = gcnew Pen(Color::Orange, enemy_normal[3].radius);
+            g->DrawEllipse(pen_or, enemy_mid[3].pos.x - 10, enemy_mid[3].pos.y - 10, enemy_mid[3].radius, enemy_mid[3].radius);
+        }
+        if (enemy_mid[4].enable == true) {
+            Graphics^ g = e->Graphics;
+            Pen^ pen_or = gcnew Pen(Color::Orange, enemy_mid[4].radius);
+            g->DrawEllipse(pen_or, enemy_mid[4].pos.x - 10, enemy_mid[4].pos.y - 10, enemy_mid[4].radius, enemy_mid[4].radius);
         }
     }
     private: System::Void playgameform_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
@@ -547,6 +628,11 @@ namespace defense_mission {
                this->label5 = (gcnew System::Windows::Forms::Label());
                this->label6 = (gcnew System::Windows::Forms::Label());
                this->label7 = (gcnew System::Windows::Forms::Label());
+               this->label8 = (gcnew System::Windows::Forms::Label());
+               this->label9 = (gcnew System::Windows::Forms::Label());
+               this->label10 = (gcnew System::Windows::Forms::Label());
+               this->label11 = (gcnew System::Windows::Forms::Label());
+               this->label12 = (gcnew System::Windows::Forms::Label());
                (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
                this->SuspendLayout();
                // 
@@ -556,7 +642,7 @@ namespace defense_mission {
                this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                    static_cast<System::Byte>(136)));
                this->button1->Location = System::Drawing::Point(782, 0);
-               this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+               this->button1->Margin = System::Windows::Forms::Padding(2);
                this->button1->Name = L"button1";
                this->button1->Size = System::Drawing::Size(103, 34);
                this->button1->TabIndex = 0;
@@ -568,7 +654,7 @@ namespace defense_mission {
                // 
                this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
                this->pictureBox1->Location = System::Drawing::Point(1, 77);
-               this->pictureBox1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+               this->pictureBox1->Margin = System::Windows::Forms::Padding(2);
                this->pictureBox1->Name = L"pictureBox1";
                this->pictureBox1->Size = System::Drawing::Size(884, 394);
                this->pictureBox1->TabIndex = 1;
@@ -628,11 +714,10 @@ namespace defense_mission {
                // label1
                // 
                this->label1->AutoSize = true;
-               this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                   static_cast<System::Byte>(136)));
+               this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
                this->label1->Location = System::Drawing::Point(36, 20);
                this->label1->Name = L"label1";
-               this->label1->Size = System::Drawing::Size(64, 25);
+               this->label1->Size = System::Drawing::Size(79, 29);
                this->label1->TabIndex = 7;
                this->label1->Text = L"label1";
                // 
@@ -1004,18 +1089,84 @@ namespace defense_mission {
                // label7
                // 
                this->label7->AutoSize = true;
+               this->label7->Font = (gcnew System::Drawing::Font(L"新細明體", 12));
                this->label7->Location = System::Drawing::Point(665, 30);
                this->label7->Name = L"label7";
-               this->label7->Size = System::Drawing::Size(33, 12);
+               this->label7->Size = System::Drawing::Size(64, 24);
                this->label7->TabIndex = 38;
                this->label7->Text = L"label7";
                // 
-               // playgameform
+               // label8
+               // 
+               this->label8->AutoSize = true;
+               this->label8->BackColor = System::Drawing::Color::Orange;
+               this->label8->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label8->ForeColor = System::Drawing::Color::Blue;
+               this->label8->Location = System::Drawing::Point(819, 114);
+               this->label8->Name = L"label8";
+               this->label8->Size = System::Drawing::Size(84, 20);
+               this->label8->TabIndex = 39;
+               this->label8->Text = L"(*´･д･)\?";
+               // 
+               // label9
+               // 
+               this->label9->AutoSize = true;
+               this->label9->BackColor = System::Drawing::Color::Orange;
+               this->label9->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label9->ForeColor = System::Drawing::Color::Blue;
+               this->label9->Location = System::Drawing::Point(819, 195);
+               this->label9->Name = L"label9";
+               this->label9->Size = System::Drawing::Size(84, 20);
+               this->label9->TabIndex = 40;
+               this->label9->Text = L"(*´･д･)\?";
+               // 
+               // label10
+               // 
+               this->label10->AutoSize = true;
+               this->label10->BackColor = System::Drawing::Color::Orange;
+               this->label10->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label10->ForeColor = System::Drawing::Color::Blue;
+               this->label10->Location = System::Drawing::Point(819, 270);
+               this->label10->Name = L"label10";
+               this->label10->Size = System::Drawing::Size(84, 20);
+               this->label10->TabIndex = 41;
+               this->label10->Text = L"(*´･д･)\?";
+               // 
+               // label11
+               // 
+               this->label11->AutoSize = true;
+               this->label11->BackColor = System::Drawing::Color::Orange;
+               this->label11->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label11->ForeColor = System::Drawing::Color::Blue;
+               this->label11->Location = System::Drawing::Point(819, 340);
+               this->label11->Name = L"label11";
+               this->label11->Size = System::Drawing::Size(84, 20);
+               this->label11->TabIndex = 42;
+               this->label11->Text = L"(*´･д･)\?";
+               // 
+               // label12
+               // 
+               this->label12->AutoSize = true;
+               this->label12->BackColor = System::Drawing::Color::Orange;
+               this->label12->Font = (gcnew System::Drawing::Font(L"新細明體", 10));
+               this->label12->ForeColor = System::Drawing::Color::Blue;
+               this->label12->Location = System::Drawing::Point(819, 413);
+               this->label12->Name = L"label12";
+               this->label12->Size = System::Drawing::Size(84, 20);
+               this->label12->TabIndex = 43;
+               this->label12->Text = L"(*´･д･)\?";
+               // 
+               // playgameform2
                // 
                this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
                this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
                this->BackColor = System::Drawing::Color::LemonChiffon;
-               this->ClientSize = System::Drawing::Size(886, 522);
+               this->ClientSize = System::Drawing::Size(884, 522);
+               this->Controls->Add(this->label12);
+               this->Controls->Add(this->label11);
+               this->Controls->Add(this->label10);
+               this->Controls->Add(this->label9);
+               this->Controls->Add(this->label8);
                this->Controls->Add(this->label7);
                this->Controls->Add(this->label6);
                this->Controls->Add(this->label5);
@@ -1055,8 +1206,8 @@ namespace defense_mission {
                this->Controls->Add(this->button2);
                this->Controls->Add(this->pictureBox1);
                this->Controls->Add(this->button1);
-               this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
-               this->Name = L"playgameform";
+               this->Margin = System::Windows::Forms::Padding(2);
+               this->Name = L"playgameform2";
                this->Text = L"gaming";
                (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
                this->ResumeLayout(false);
@@ -1074,6 +1225,7 @@ namespace defense_mission {
                for (int i = 0; i < 5; i++) {
                    int layer = -1;
                    bool isbreak = false;
+                   bool isbreak2 = false;
                    for (int j = 0; j < 5; j++) {
                        if (map[5 * j + i]) {
                            if (j == 0 && enemy_normal[i].pos.x - 50 == laser[i].pos.x) {
@@ -1109,20 +1261,55 @@ namespace defense_mission {
                                    isbreak = false;
                                    cannon_wea[i].enable = false;
                                }
+                           }
 
+                       }
+                       if (map[5 * j + i]) {
+                           if (j == 0 && enemy_mid[i].pos.x - 50 == laser[i].pos.x) {
+                               enemy_mid[i].pos.x = laser[i].pos.x + 50;
+                               isbreak2 = true;
+                               laser[i].life -= enemy_mid[i].damage;
+                               if (laser[i].life <= 0) {
+                                   map[5 * j + i] = false;
+                                   isbreak2 = false;
+                                   //for (int t = 0; t < 10; t++) {
+
+                                   //}
+                               }
                            }
-                           /*else if (layer == 3 &&  enemy_normal[i].pos.x  <= Landmine[i].pos.x) {
-                               enemy_normal[i].pos.x = Landmine[i].pos.x;
+                           else if (j == 1 && enemy_mid[i].pos.x - 50 == machine[i].pos.x) {
+                               enemy_mid[i].pos.x = machine[i].pos.x + 50;
+                               isbreak2 = true;
+                               machine[i].life -= enemy_mid[i].damage;
+                               if (machine[i].life <= 0) {
+                                   map[5 * j + i] = false;
+                                   isbreak2 = false;
+                                   for (int t = 0; t < 10; t++) {
+                                       machinegun_wea[10 * i + t].enable = false;
+                                   }
+                               }
                            }
-                           else if (layer == 4 &&  enemy_normal[i].pos.x  <= Bomb[i].pos.x) {
-                               enemy_normal[i].pos.x = Bomb[i].pos.x;
-                           }*/
+                           else if (j == 2 && enemy_mid[i].pos.x - 50 == Cannon[i].pos.x) {
+                               enemy_mid[i].pos.x = Cannon[i].pos.x + 50;
+                               isbreak2 = true;
+                               Cannon[i].life -= enemy_mid[i].damage;
+                               if (Cannon[i].life <= 0) {
+                                   map[5 * j + i] = false;
+                                   isbreak2 = false;
+                                   cannon_wea[i].enable = false;
+                               }
+                           }
 
                        }
 
                    }
                    if (!isbreak) enemy_normal[i].pos.x -= 2;
+                   if (!isbreak2 && system_counter >= 400) enemy_mid[i].pos.x -= 2;
                    if (enemy_normal[i].pos.x <= 160) {
+                       game = false;
+
+                   }
+                   if (enemy_mid[i].pos.x <= 160) {
                        game = false;
 
                    }
@@ -1157,6 +1344,11 @@ namespace defense_mission {
                this->label4->Location = System::Drawing::Point(enemy_normal[2].pos.x - 31, 270);
                this->label5->Location = System::Drawing::Point(enemy_normal[3].pos.x - 31, 340);
                this->label6->Location = System::Drawing::Point(enemy_normal[4].pos.x - 31, 413);
+               this->label8->Location = System::Drawing::Point(enemy_mid[0].pos.x - 31, 114);
+               this->label9->Location = System::Drawing::Point(enemy_mid[1].pos.x - 31, 195);
+               this->label10->Location = System::Drawing::Point(enemy_mid[2].pos.x - 31, 270);
+               this->label11->Location = System::Drawing::Point(enemy_mid[3].pos.x - 31, 340);
+               this->label12->Location = System::Drawing::Point(enemy_mid[4].pos.x - 31, 413);
            }
 
            void collision() {
@@ -1164,6 +1356,7 @@ namespace defense_mission {
                    //machine gun 
                    for (int j = 0; j < 10; j++) {
                        dis = sqrt((machinegun_wea[10 * i + j].pos.x - enemy_normal[i].pos.x) * (machinegun_wea[10 * i + j].pos.x - enemy_normal[i].pos.x) + (machinegun_wea[10 * i + j].pos.y - enemy_normal[i].pos.y) * (machinegun_wea[10 * i + j].pos.y - enemy_normal[i].pos.y));
+                       dis2 = sqrt((machinegun_wea[10 * i + j].pos.x - enemy_mid[i].pos.x) * (machinegun_wea[10 * i + j].pos.x - enemy_mid[i].pos.x) + (machinegun_wea[10 * i + j].pos.y - enemy_mid[i].pos.y) * (machinegun_wea[10 * i + j].pos.y - enemy_mid[i].pos.y));
                        if (dis <= 20 && machinegun_wea[10 * i + j].enable) {
                            enemy_normal[i].life -= machinegun_wea[10 * i + j].damage;
                            machinegun_wea[10 * i + j].pos.x = machine[i].pos.x;
@@ -1175,10 +1368,22 @@ namespace defense_mission {
                                coin += 20;
                            }
                        }
+                       if (dis2 <= 20 && machinegun_wea[10 * i + j].enable) {
+                           enemy_mid[i].life -= machinegun_wea[10 * i + j].damage;
+                           machinegun_wea[10 * i + j].pos.x = machine[i].pos.x;
+                           if (enemy_mid[i].life <= 0) {
+                               //enemy_normal[i].enable = false;
+                               enemy_mid[i].pos.x = 850;
+                               enemy_mid[i].life = initial_enemy2_life;
+                               killed++;
+                               coin += 30;
+                           }
+                       }
                    }
 
                    // cannon
                    dis = sqrt((cannon_wea[i].pos.x - enemy_normal[i].pos.x) * (cannon_wea[i].pos.x - enemy_normal[i].pos.x) + (cannon_wea[i].pos.y - enemy_normal[i].pos.y) * (cannon_wea[i].pos.y - enemy_normal[i].pos.y));
+                   dis2 = sqrt((cannon_wea[i].pos.x - enemy_mid[i].pos.x) * (cannon_wea[i].pos.x - enemy_mid[i].pos.x) + (cannon_wea[i].pos.y - enemy_mid[i].pos.y) * (cannon_wea[i].pos.y - enemy_mid[i].pos.y));
                    if (dis <= 20 && cannon_wea[i].enable) {
                        enemy_normal[i].life -= cannon_wea[i].damage;
                        cannon_wea[i].pos.x = Cannon[i].pos.x;
@@ -1190,9 +1395,21 @@ namespace defense_mission {
                            coin += 20;
                        }
                    }
+                   if (dis2 <= 20 && cannon_wea[i].enable) {
+                       enemy_mid[i].life -= cannon_wea[i].damage;
+                       cannon_wea[i].pos.x = Cannon[i].pos.x;
+                       if (enemy_mid[i].life <= 0) {
+                           //enemy_normal[i].enable = false;
+                           enemy_mid[i].pos.x = 850;
+                           enemy_mid[i].life = initial_enemy2_life;
+                           killed++;
+                           coin += 30;
+                       }
+                   }
 
                    // landmind
                    dis = sqrt((Landmine[i].pos.x - enemy_normal[i].pos.x) * (Landmine[i].pos.x - enemy_normal[i].pos.x) + (Landmine[i].pos.y - enemy_normal[i].pos.y) * (Landmine[i].pos.y - enemy_normal[i].pos.y));
+                   dis2 = sqrt((Landmine[i].pos.x - enemy_mid[i].pos.x) * (Landmine[i].pos.x - enemy_mid[i].pos.x) + (Landmine[i].pos.y - enemy_mid[i].pos.y) * (Landmine[i].pos.y - enemy_mid[i].pos.y));
                    if (dis <= 30 && Landmine[i].enable) {
                        enemy_normal[i].life -= Landmine[i].damage;
                        map[15 + i] = false;
@@ -1205,10 +1422,23 @@ namespace defense_mission {
                            coin += 20;
                        }
                    }
+                   if (dis2 <= 30 && Landmine[i].enable) {
+                       enemy_mid[i].life -= Landmine[i].damage;
+                       map[15 + i] = false;
+                       Landmine[i].enable = false;
+                       if (enemy_mid[i].life <= 0) {
+                           //enemy_normal[i].enable = false;
+                           enemy_mid[i].pos.x = 850;
+                           enemy_mid[i].life = initial_enemy2_life;
+                           killed++;
+                           coin += 30;
+                       }
+                   }
 
                    // bomb
                    if (system_counter - Bomb[i].now_time >= 30) {
                        dis = sqrt((Bomb[i].pos.x - enemy_normal[i].pos.x) * (Bomb[i].pos.x - enemy_normal[i].pos.x) + (Bomb[i].pos.y - enemy_normal[i].pos.y) * (Bomb[i].pos.y - enemy_normal[i].pos.y));
+                       dis2 = sqrt((Bomb[i].pos.x - enemy_mid[i].pos.x) * (Bomb[i].pos.x - enemy_mid[i].pos.x) + (Bomb[i].pos.y - enemy_mid[i].pos.y) * (Bomb[i].pos.y - enemy_mid[i].pos.y));
                        if (dis <= 50 && Bomb[i].enable) {
                            enemy_normal[i].life -= Bomb[i].damage;
                            if (enemy_normal[i].life <= 0) {
@@ -1217,6 +1447,16 @@ namespace defense_mission {
                                enemy_normal[i].life = initial_enemy_life;
                                killed++;
                                coin += 20;
+                           }
+                       }
+                       if (dis2 <= 50 && Bomb[i].enable) {
+                           enemy_mid[i].life -= Bomb[i].damage;
+                           if (enemy_mid[i].life <= 0) {
+                               //enemy_normal[i].enable = false;
+                               enemy_mid[i].pos.x = 850;
+                               enemy_mid[i].life = initial_enemy2_life;
+                               killed++;
+                               coin += 30;
                            }
                        }
                        map[20 + i] = false;
@@ -1276,15 +1516,15 @@ namespace defense_mission {
                        Bomb[i].pos.y = 343;
                    }
                    // life
-                   laser[i].life = 3 * 12;
-                   machine[i].life = 4 * 12;
-                   Cannon[i].life = 5 * 12;
+                   laser[i].life =4 * 12;
+                   machine[i].life =6 * 12;
+                   Cannon[i].life = 8 * 12;
                    // damage
-                   laser[i].damage = 3;
-                   machine[i].damage = 1;
-                   Cannon[i].damage = 5;
-                   Landmine[i].damage = 10;
-                   Bomb[i].damage = 25;
+                   laser[i].damage = 5;
+                   machine[i].damage = 2;
+                   Cannon[i].damage = 8;
+                   Landmine[i].damage = 50;
+                   Bomb[i].damage = 100;
                    // shoot_v
                    laser[i].shoot_v = 5;
                    machine[i].shoot_v = 20;
@@ -1296,14 +1536,14 @@ namespace defense_mission {
                    cannon_wea[i].radius = 20;
                    lasergun_wea[i].pos.x = 184;
                    cannon_wea[i].pos.x = 350;
-                   cannon_wea[i].damage = 3;
-                   lasergun_wea[i].damage = 2;
+                   cannon_wea[i].damage = 10;
+                   lasergun_wea[i].damage = 4;
                }
                for (int i = 0; i < 5 * 10; i++) {
                    machinegun_wea[i].radius = 5;
                    machinegun_wea[i].pos.x = 280;
                    machinegun_wea[i].pos.y = machine[i / 10].pos.y;
-                   machinegun_wea[i].damage = 1;
+                   machinegun_wea[i].damage = 2;
                }
 
 
@@ -1314,20 +1554,29 @@ namespace defense_mission {
                    enemy_normal[i].life = initial_enemy_life;
                    enemy_normal[i].radius = 20;
                    enemy_normal[i].pos.x = 850;
+                   enemy_mid[i].damage = 3;
+                   enemy_mid[i].life = initial_enemy2_life;
+                   enemy_mid[i].radius = 20;
+                   enemy_mid[i].pos.x = 850;
                    if (i == 0) {
                        enemy_normal[i].pos.y = 44;
+                       enemy_mid[i].pos.y = 44;
                    }
                    else if (i == 1) {
                        enemy_normal[i].pos.y = 125;
+                       enemy_mid[i].pos.y = 125;
                    }
                    else if (i == 2) {
                        enemy_normal[i].pos.y = 200;
+                       enemy_mid[i].pos.y = 200;
                    }
                    else if (i == 3) {
                        enemy_normal[i].pos.y = 270;
+                       enemy_mid[i].pos.y = 270;
                    }
                    else {
                        enemy_normal[i].pos.y = 343;
+                       enemy_mid[i].pos.y = 343;
                    }
                }
            }
@@ -1506,11 +1755,11 @@ namespace defense_mission {
         // main
 
         if (!game) {
-            //gameoverform^ gameover = gcnew gameoverform();
+            gameoverform^ gameover = gcnew gameoverform();
 
-            //// 顯示SecondForm
-            //gameover->Show();
-            //this->Close();
+            // 顯示secondform
+            gameover->Show();
+            this->Close();
             player->Stop();
         }
         if (system_counter == 0) {
@@ -1518,15 +1767,15 @@ namespace defense_mission {
 
 
             // 播放音樂
-            player->Play();
+            
         }
+        if (system_counter%940 == 0) { player->Play(); }
+        if (killed >= 40) {
+            nextform3^ nextform = gcnew nextform3();
 
-        if (killed >= 20) {
-            //nextform2^ nextform = gcnew nextform2();
-
-            //// 顯示SecondForm
-            //nextform->Show();
-            //this->Close();
+            // 顯示secondform
+            nextform->Show();
+            this->Close();
             player->Stop();
         }
 
@@ -1545,18 +1794,27 @@ namespace defense_mission {
         if (coin >= 20) {
             coin -= 20;
             button_display_laser();
+            for (int i = 0; i < 5; i++) {
+                laser[i].life = 4 * 12;
+            }
         }
     }
     private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) { // machine gun
         if (coin >= 50) {
             coin -= 50;
             button_display_machine();
+            for (int i = 0; i < 5; i++) {
+                machine[i].life = 6 * 12;
+            }
         }
     }
     private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) { // cannon
         if (coin >= 40) {
             coin -= 40;
             button_display_cannon();
+            for (int i = 0; i < 5; i++) {
+                Cannon[i].life = 8 * 12;
+            }
         }
     }
     private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) { // landmine

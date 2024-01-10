@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include"gameruleform.h"
 #include"playgameform.h"
+#include "playgameform3.h"
 
 namespace CppCLRWinFormsProject {
 
@@ -43,6 +44,7 @@ namespace CppCLRWinFormsProject {
 	public: System::Windows::Forms::Label^ name;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Button^ button4;
 	public:
 	private:
 
@@ -69,6 +71,7 @@ namespace CppCLRWinFormsProject {
             this->name = (gcnew System::Windows::Forms::Label());
             this->label1 = (gcnew System::Windows::Forms::Label());
             this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+            this->button4 = (gcnew System::Windows::Forms::Button());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
             this->SuspendLayout();
             // 
@@ -149,12 +152,23 @@ namespace CppCLRWinFormsProject {
             this->pictureBox1->TabStop = false;
             this->pictureBox1->Click += gcnew System::EventHandler(this, &Form1::pictureBox1_Click);
             // 
+            // button4
+            // 
+            this->button4->Location = System::Drawing::Point(1095, 544);
+            this->button4->Name = L"button4";
+            this->button4->Size = System::Drawing::Size(75, 23);
+            this->button4->TabIndex = 6;
+            this->button4->Text = L"button4";
+            this->button4->UseVisualStyleBackColor = true;
+            this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
+            // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->BackColor = System::Drawing::Color::LemonChiffon;
             this->ClientSize = System::Drawing::Size(1182, 653);
+            this->Controls->Add(this->button4);
             this->Controls->Add(this->pictureBox1);
             this->Controls->Add(this->label1);
             this->Controls->Add(this->name);
@@ -189,6 +203,10 @@ private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ 
 private: System::Void Form1_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+    defense_mission::playgameform3^ playgame = gcnew defense_mission::playgameform3();
+    playgame->Show();
 }
 };
 }
